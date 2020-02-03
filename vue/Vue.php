@@ -12,6 +12,7 @@ class Vue
   {
     $this->fichier = "Vue/vue" . $page . ".php";
     $this->login=$login;  
+    //chnager la navbar suivant si on est connecté ou pas
     if($login==null)
     {
       $this->nav="Vue/VueNavbarNotConnected.php";

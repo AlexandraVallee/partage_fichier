@@ -14,7 +14,7 @@ $connexionAutorisee=false;
 
 switch ($action) {
 	case "connexion":
-		
+		//récupérer les datas 
 		$target=explode('&',$_POST['target']);
 		if(explode('=',$target[1])[0]=='mot_de_passe_connexion')
 		{
@@ -28,6 +28,7 @@ switch ($action) {
 		{
 			$resterConnecter=true;
 		}
+		//si tous les champs sont remplis
 		if($login!=null&&$mdp!=null)
 		{
 			$controleUser=new ControleUser($login,$mdp);
