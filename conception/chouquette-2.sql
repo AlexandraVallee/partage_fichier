@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  lun. 03 fév. 2020 à 10:49
--- Version du serveur :  5.7.17
--- Version de PHP :  7.1.3
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  lun. 03 fév. 2020 à 13:43
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,11 +28,16 @@ SET time_zone = "+00:00";
 -- Structure de la table `commentaire`
 --
 
-CREATE TABLE `commentaire` (
-  `ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `commentaire`;
+CREATE TABLE IF NOT EXISTS `commentaire` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `contenu` text NOT NULL,
+  `date` datetime NOT NULL,
   `id_user` int(11) NOT NULL,
-  `id_image` int(11) NOT NULL
+  `id_image` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `id_image` (`id_image`),
+  KEY `id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -41,12 +46,15 @@ CREATE TABLE `commentaire` (
 -- Structure de la table `fichier`
 --
 
-CREATE TABLE `fichier` (
-  `ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `fichier`;
+CREATE TABLE IF NOT EXISTS `fichier` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `lien` varchar(255) NOT NULL,
   `statut` varchar(255) NOT NULL,
-  `id_user` int(11) DEFAULT NULL
+  `id_user` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -55,10 +63,14 @@ CREATE TABLE `fichier` (
 -- Structure de la table `likefile`
 --
 
-CREATE TABLE `likefile` (
-  `ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `likefile`;
+CREATE TABLE IF NOT EXISTS `likefile` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
-  `id_image` int(11) NOT NULL
+  `id_image` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `id_image` (`id_image`),
+  KEY `id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -67,12 +79,21 @@ CREATE TABLE `likefile` (
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `mail` varchar(255) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`ID`, `mail`, `pseudo`, `password`) VALUES
+(1, 'amandine@amandine.fr', 'amandine', '$2y$10$Q7xMSiY/tKjL0UZH0HZWme8WiLLYlakhQdg2trXSQV6t4SEtZNHiK');
 
 -- --------------------------------------------------------
 
@@ -80,83 +101,17 @@ CREATE TABLE `user` (
 -- Structure de la table `vote`
 --
 
-CREATE TABLE `vote` (
-  `ID` int(11) NOT NULL,
+DROP TABLE IF EXISTS `vote`;
+CREATE TABLE IF NOT EXISTS `vote` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `vote` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `id_image` int(11) NOT NULL
+  `id_image` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `id_image` (`id_image`),
+  KEY `id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `commentaire`
---
-ALTER TABLE `commentaire`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `id_image` (`id_image`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Index pour la table `fichier`
---
-ALTER TABLE `fichier`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Index pour la table `likefile`
---
-ALTER TABLE `likefile`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `id_image` (`id_image`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Index pour la table `vote`
---
-ALTER TABLE `vote`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `id_image` (`id_image`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `commentaire`
---
-ALTER TABLE `commentaire`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `fichier`
---
-ALTER TABLE `fichier`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `likefile`
---
-ALTER TABLE `likefile`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `vote`
---
-ALTER TABLE `vote`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Contraintes pour les tables déchargées
 --
