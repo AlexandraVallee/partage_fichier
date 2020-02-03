@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 03 fév. 2020 à 14:00
+-- Généré le :  lun. 03 fév. 2020 à 14:57
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.3.5
 
@@ -50,8 +50,10 @@ DROP TABLE IF EXISTS `fichier`;
 CREATE TABLE IF NOT EXISTS `fichier` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
-  `lien` varchar(255) NOT NULL,
+  `lien_local` varchar(255) NOT NULL,
+  `lien_url` varchar(255) NOT NULL,
   `statut` varchar(255) NOT NULL,
+  `date_ajout` datetime NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `id_user` (`id_user`)
