@@ -59,3 +59,4 @@ class Like extends connexion_bdd
             echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
         }
     }
+}
