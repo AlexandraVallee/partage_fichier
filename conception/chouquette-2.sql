@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 03 fév. 2020 à 13:43
+-- Généré le :  lun. 03 fév. 2020 à 14:00
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.3.5
 
@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `commentaire`;
 CREATE TABLE IF NOT EXISTS `commentaire` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `contenu` text NOT NULL,
-  `date` datetime NOT NULL,
+  `date_ajout` datetime NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_image` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
