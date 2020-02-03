@@ -1,0 +1,123 @@
+/* CSS RESET */
+
+html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}
+h1,h2,h3,h4,h5,h6,a{font-size:100%;font-weight:normal}
+ul{list-style:none}
+button,input,select,textarea{margin:0}
+html{box-sizing:border-box}
+*,*:before,*:after{box-sizing:inherit}
+img,video{height:auto;max-width:100%}
+iframe{border:0}
+table{border-collapse:collapse;border-spacing:0}
+td,th{padding:0;text-align:left}
+a{text-decoration:none;color:black; }
+fieldset{border-style:none;}
+html 
+{
+	height: 100%;
+}
+
+body
+{
+	min-height: 100%;
+	position:relative;
+}
+
+header
+{
+
+}
+
+footer
+{
+	
+}
+h2
+{
+	font-size:2.5em;
+	font-style:bold;
+}
+
+p
+{
+	font-size:1em;
+}
+
+/* Affichage fenetre de connexion/inscription */
+#fenetreConnexion
+{
+  position: fixed;
+  z-index: 100;
+  width:60%;
+  height:50%;
+  top:150px;
+  left:20vw;
+  background-color: rgba(black, .75);
+  transition: .2s;
+  border:solid 1px grey;
+}
+
+#fenetreConnexion button
+{
+	position:absolute;
+	top:1rem;
+	right:1rem;
+}
+#fenetreConnexion>div:first-of-type 
+{
+	display:flex;
+	justify-content: space-around;
+ 	max-width: 100%;
+ 	height:100%;
+  	margin: auto;
+ 	padding: 1rem;
+  	background-color: white;
+}
+#fenetreConnexion>div>div
+{
+	flex-grow:0;
+	width:50%;
+}
+#fenetreConnexion *
+{
+	margin-bottom: 5px;
+}
+.fenetreClose
+{
+	display: none;
+
+}
+.fenetreShow
+{
+	display:block;
+	opacity:100;
+}
+.fenetreShow a
+{
+	color:blue;
+}
+
+#fond 
+{
+   position:absolute;
+   background-color:#000;
+   display:none;
+   width: 100%;
+   height:100%;
+}
+.fondShow
+{
+	display:block !important;
+	background-color:grey !important;
+	opacity:50%;
+}
+
+form .error
+{
+	color: #ff0000;
+}
+
+#erreur
+{
+	color: #ff0000;
+}
