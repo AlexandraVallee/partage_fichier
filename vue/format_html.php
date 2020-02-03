@@ -19,24 +19,6 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </nav>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Accueil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Se connecter</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">S'inscrire</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Ajouter une image</a>
-              </li>
-            </ul>    
-          </div>
-        </nav>
     </header>
 
 <div>
