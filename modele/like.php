@@ -1,6 +1,6 @@
 <?php
 require_once'modele/connexion_bdd.php';
-class File extends connexion_bdd
+class Like extends connexion_bdd
 {
 
 	private $user;
