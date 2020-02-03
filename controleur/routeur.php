@@ -7,6 +7,7 @@ class Routeur {
 
     private $controleurAcceuil;
     private $controleurUser;
+    private $controleurAjoutFichier;
     private $action;
 
     public function __construct()
@@ -33,6 +34,11 @@ class Routeur {
         {
             $this->controleurUser=new ControleurUser;
             $this->controleurUser->Deconnexion();
+        }
+        if($this->action=='fichier_ajout')
+        {
+            $this->controleurAjoutFichier =new ControleurAjoutFichier();
+            $this->controleurAjoutFichier->ControleurAjoutFichier();
         }
         /* ajout route
         else if($this->action=='XX')

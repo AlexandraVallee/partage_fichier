@@ -3,7 +3,7 @@
 require_once 'Vue/Vue.php';
 require_once 'Controleur/ControleurUser.php';   
 
-class ControleurAcceuil extends ControleurUser
+class ControleurAjoutFichier extends ControleurUser
 {
     public function __construct() 
     { 
@@ -11,12 +11,9 @@ class ControleurAcceuil extends ControleurUser
         parent::__construct();     
     } 
 
-    
-    public function acceuil() 
-    { 
-    
-
-        $vue = new Vue("Acceuil",$this->login);
-        $vue->generer(array('' => ''));
+    public function ajoutFichier()
+    {
+        $vue = new Vue("fichier_ajout", $this->login);
+        $vue->generer(array('' => '' ));
     } 
 }
