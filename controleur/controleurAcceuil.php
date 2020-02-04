@@ -3,6 +3,7 @@
 require_once 'Vue/Vue.php';
 require_once 'Controleur/ControleurUser.php';   
 require_once 'Modele/File.php';
+require_once 'Modele/Like.php';
 
 class ControleurAcceuil extends ControleurUser
 {
@@ -18,7 +19,14 @@ class ControleurAcceuil extends ControleurUser
     public function acceuil() 
     { 
         $liste_file=$this->file->getFile();
+        foreach ($liste_file as $key => $value) 
+        {
+           $like=new like($this->login,$value['ID']);
+           $like->getNbLike();
+           $liste_file[$key]['like']=$like;
+        }
 
+        print_r($liste_file);die;
         
            
         

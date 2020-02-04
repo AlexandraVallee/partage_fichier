@@ -56,7 +56,7 @@ class File extends connexion_bdd
     	else if($lienUrl!=null)//selection avec url (privé)
     	{
     		$req="WHERE lien_url=? ";
-    		$param=[array(1,$lien_url,PDO::PARAM_STR)];
+    		$param=[array(1,$lienUrl,PDO::PARAM_STR)];
     	}
     	else if($user!=null)//selection file du user
     	{
