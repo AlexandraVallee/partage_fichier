@@ -53,7 +53,7 @@ class ControleurAjoutFichier extends ControleurUser
                 
             
                 $this->nom = $_POST['nom'];
-                $this->lienUrl = "index.php?action=affiche_file&lien=".hash_file('md5',$_FILES['fileToUpload']['tmp_name']);
+                $this->lienUrl = hash_file('md5',$_FILES['fileToUpload']['tmp_name']);
                 $newName = preg_replace('/([^A-Za-z0-9._]+)/i', '-', $_FILES['fileToUpload']['name']);
                 $this->lienLocal ="librairies/uploads/".$newName; 
                 if(isset($_POST['drone']))
