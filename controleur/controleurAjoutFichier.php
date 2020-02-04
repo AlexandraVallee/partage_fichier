@@ -13,7 +13,7 @@ class ControleurAjoutFichier extends ControleurUser
 
     public function ajoutFichier()
     {
-        $vue = new Vue("fichier_ajout", $this->login);
+        $vue = new Vue("ImportImage", $this->login);
         $vue->generer(array('' => '' ));
     } 
 }

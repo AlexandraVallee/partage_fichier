@@ -2,6 +2,7 @@
 require_once 'Controleur/controleurAcceuil.php';
 require_once 'Vue/Vue.php';
 require_once 'Controleur/controleurUser.php';
+require_once 'Controleur/controleurAjoutFichier.php';
 
 class Routeur {
 
@@ -37,8 +38,8 @@ class Routeur {
         }
         if($this->action=='fichier_ajout')
         {
-            $this->controleurAjoutFichier =new ControleurAjoutFichier();
-            $this->controleurAjoutFichier->ControleurAjoutFichier();
+            $this->controleurAjoutFichier = new ControleurAjoutFichier();
+            $this->controleurAjoutFichier->ajoutFichier();
         }
         /* ajout route
         else if($this->action=='XX')
