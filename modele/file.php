@@ -65,7 +65,7 @@ class File extends connexion_bdd
     	}
     	else
     	{
-    		$req='';
+    		$req="WHERE statut='public'";
             $param=null;
     	}
 
