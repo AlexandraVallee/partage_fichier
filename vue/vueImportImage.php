@@ -24,7 +24,7 @@
 		  		<label for="prive">Privé</label>
 			</div>
 
-			<button class="btn btn-primary">Envoyer</button> 
+			<button class="btn btn-primary" name="submit">Envoyer</button> 
 
 		</form>
 	</div>
