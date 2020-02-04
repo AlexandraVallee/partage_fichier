@@ -4,7 +4,7 @@ class Like extends connexion_bdd
 {
 
 	private $user;
-	private $file_id
+	private $file_id;
 
 	public function __construct($login,$id)
     {
@@ -15,8 +15,8 @@ class Like extends connexion_bdd
     {
     	 try
         {
-        $nbLike ="SELECT COUNT() FROM likefile WHERE id_image=? ";
-          $param=[array(1,$this->file_id,PDO::PARAM_INT) ];
+        $nbLike ="SELECT COUNT(ID) FROM likefile WHERE id_image=? ";
+          $param=[array(1,$this->file_id,PDO::PARAM_INT) ]; 
           $nbLike=$this->executerRequete($nbLike,$param);
 
         }
