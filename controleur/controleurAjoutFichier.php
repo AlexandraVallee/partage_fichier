@@ -24,7 +24,7 @@ class ControleurAjoutFichier extends ControleurUser
     public function ajoutFichier()
     {
             $vue = new Vue("ImportImage", $this->login);
-            $vue->generer(array('' => '' ));
+            $vue->generer(array('login' => $this->login ));
     }
         public function import()
     {
@@ -56,7 +56,14 @@ class ControleurAjoutFichier extends ControleurUser
                 $this->lienUrl = "index.php?action=affiche_file&lien=".hash_file('md5',$_FILES['fileToUpload']['tmp_name']);
                 $newName = preg_replace('/([^A-Za-z0-9._]+)/i', '-', $_FILES['fileToUpload']['name']);
                 $this->lienLocal ="librairies/uploads/".$newName; 
-                $this->statut = $_POST['drone'];
+                if(isset($_POST['drone']))
+                {
+                    $this->statut = $_POST['drone'];
+                }
+                else
+                {
+                    $this->statut = 'public';
+                }
 
                 if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $newName)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
                 {
@@ -71,7 +78,7 @@ class ControleurAjoutFichier extends ControleurUser
         }
         
         $vue = new Vue("ImportImage", $this->login);
-        $vue->generer(array('erreur' => $erreur ));
+        $vue->generer(array('erreur' => $erreur,'login'=>$this->login ));
     }
 
 

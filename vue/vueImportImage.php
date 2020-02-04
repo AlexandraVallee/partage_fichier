@@ -14,7 +14,8 @@
 
 			<input class="form-control" type="file" name="fileToUpload" id="fileToUpload" accept="image/png, image/jpeg, image/jpg, .doc, .txt, .pdf, .odt">
 		</div>
-
+		<?php if($login!=null)
+		{ ?>
 			<div class="form-group">
 		  		<input type="radio" id="huey" name="drone" value="public"
 		         checked>
@@ -25,7 +26,7 @@
 		  		<input type="radio" id="dewey" name="drone" value="prive">
 		  		<label for="prive">Privé</label>
 			</div>
-
+		<?php }; ?>
 			<button class="btn btn-primary" name="submit">Envoyer</button> 
 
 		</form>
