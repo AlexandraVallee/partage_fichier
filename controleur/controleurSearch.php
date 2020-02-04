@@ -49,9 +49,18 @@ class ControleurSearch extends ControleurUser
                         }
                         array_push($rechercheSurlignee,array('titre'=>$res['titre'],'date_creation'=>$res['date_creation'],'contenu'=>$res['contenu']));
                     }*/
-                   
                     $vue = new Vue("Search",$this->login);
-                    $vue->generer(array('listeFile' => $listeFile));
+                    if(count($listeFile)==0)
+                    {
+                        $erreur='no result found';
+                         $vue->generer(array('listeFile' => $listeFile,'erreur' => $erreur));
+                    }
+                    else
+                    {
+                        $vue->generer(array('listeFile' => $listeFile));
+                    }
+                    
+                    
                 }
             }   
             else
