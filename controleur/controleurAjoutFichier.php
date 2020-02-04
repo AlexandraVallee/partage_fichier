@@ -68,7 +68,14 @@ class ControleurAjoutFichier extends ControleurUser
                 if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $newName)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
                 {
                     $this->fichier->ajoutFile($this->nom,$this->lienLocal,$this->statut,$this->lienUrl,$this->createdAt->format('Y-m-d H:i:s'));
-                    header('Location: index.php');
+                    if($this->login===null)
+                    {
+                        header('Location: index.php');
+                    }
+                    else
+                    {
+                         header('Location: index.php?action=profil');
+                    }
                 }
                 else //Sinon (la fonction renvoie FALSE).
                 {
