@@ -39,16 +39,7 @@ class ControleurSearch extends ControleurUser
                     }
                     $nombreMots=count($motsCles);
                     $listeFile=$this->file->getFile(null,[$nombreMots,$motsCles],null,null);
-                    /*$rechercheSurlignee=[];
-                    while($res = $this->file->fetch(PDO::FETCH_ASSOC))
-                    {
-                        for ($k=0;$k<$nombreMots;$k++)
-                        {
-                            $res['nom']=$this->file->Surligner($motsCles[$k],$res['titre']);
-                            
-                        }
-                        array_push($rechercheSurlignee,array('titre'=>$res['titre'],'date_creation'=>$res['date_creation'],'contenu'=>$res['contenu']));
-                    }*/
+                   
                     $vue = new Vue("Search",$this->login);
                     if(count($listeFile)==0)
                     {
