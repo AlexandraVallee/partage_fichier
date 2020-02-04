@@ -26,7 +26,7 @@ class ControleurAcceuil extends ControleurUser
            $liste_file[$key]['like']=$like;
         }
 
-        print_r($liste_file);die;
+        
         
            
         
