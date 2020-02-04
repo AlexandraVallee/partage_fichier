@@ -12,8 +12,8 @@ foreach($listeFile as $file):
 <figure class="figure ">
    
                    <div> <h2 ><?php echo $file['nom']; ?></h2>
-                   <div id="affichageImg" class="uniform">
-                    <a href="index.php?action=affiche_file&id=<?php echo ( $file['ID']); ?>"> <img class="img-fluid tuile" src=<?php echo ( $file['lien_local']); ?> alt=<?php echo $file['nom']; ?>> </a><br>
+                   <div name="affichageImg" class="">
+                    <a href="index.php?action=affiche_file&id=<?php echo ( $file['ID']); ?>"> <img class="img-fluid gallerie" src=<?php echo ( $file['lien_local']); ?> alt=<?php echo $file['nom']; ?>> </a><br>
                     
          </div>           
          </figure> <br>    
@@ -31,26 +31,36 @@ function affichage(mode)
 		console.log(mode)
 	
 		$('#affichage').removeClass();
-		$('#affichageImg').removeClass();
-		$('#affichageImg img').removeClass();
+
+		$('div[name="affichageImg"]').each(function(){ $(this).removeClass();});
+		console.log($('div[name="affichageImg "] img'))
+		$('div[name="affichageImg"] img').each(function(){ $(this).removeClass();})	;
+		
+		//$('div[name="affichageImg"]').removeClass();
+	//	$('#affichageImg img').removeClass();
 		if(mode==="liste")
 		{
 			
 			$('#affichage').addClass('liste');
-			$('#affichageImg img').addClass('img-fluid tuile');
+			$('div[name="affichageImg"] img').each(function(){ $(this).addClass('img-fluid liste');})	;
+			$('div[name="affichageImg"]').each(function(){ $(this).addClass('liste');});
+			
 		}
 		else if(mode==="gallerie")
 		{
 			
 			$('#affichage').addClass('photos');
-			$('#affichageImg img').addClass('img-fluid gallerie');
+			$('div[name="affichageImg"] img').each(function(){ $(this).addClass('img-fluid gallerie');})	;
+			
 		}
 		else if(mode==="tuile")
 		{
 			
 			$('#affichage').addClass('photos');
-			$('#affichageImg').addClass('uniform');
-			$('#affichageImg img').addClass('img-fluid tuile');
+			$('div[name="affichageImg"]').each(function(){ $(this).addClass('uniform');});
+		
+			$('div[name="affichageImg"] img').each(function(){ $(this).addClass('img-fluid tuile');})	;
+			
 		}
 });
 
