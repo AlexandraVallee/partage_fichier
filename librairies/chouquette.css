@@ -115,7 +115,7 @@ p
  button#connexion_deconnexion>:hover{
   color: #cf8130;
 }
-a#connexion_deconnexion>hover{
+a#connexion_deconnexion>:hover{
   color: #cf8130;
 }
 
