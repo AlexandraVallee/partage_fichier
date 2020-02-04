@@ -15,7 +15,8 @@
                 <input class="form-control mr-sm-2"  type="search" name="q" placeholder="Rechercher" aria-label="Rechercher">
                 <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" name="submitSearch" value="Search" >Rechercher</button>
         </form>
-
-
 	</div>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  	</button>
 </nav>
