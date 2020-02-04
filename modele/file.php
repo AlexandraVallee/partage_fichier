@@ -34,7 +34,24 @@ class File extends connexion_bdd
     	}
     	else if($recherche!=null)//selection suivant mot clé recherche
     	{
-    		//à ajouter
+    		$nombreMots=$recherche[0];
+            $motsCles=$recherche[1];
+            $where=[];
+            for ($i=0;$i<$nombreMots;$i++) //pour chaque mot clé 
+            {
+                $where[] = 'nom LIKE ? '; //on ajoute des conditions qui serviront au WHERE
+            }
+            $finRequete= implode(' OR ', $where); //on relie nos conditions par un opérateur logique
+                $req="WHERE ". $finRequete;
+                $param=[];
+                $k=1;
+                for ($i=0; $i<$nombreMots; $i++) 
+                {
+                    array_push($param,array($k, '%'.$motsCles[$i].'%', PDO::PARAM_STR));
+                    $k++;
+                   
+                }
+            
     	}
     	else if($lienUrl!=null)//selection avec url (privé)
     	{

@@ -3,6 +3,7 @@ require_once 'Controleur/controleurAcceuil.php';
 require_once 'Vue/Vue.php';
 require_once 'Controleur/controleurUser.php';
 require_once 'Controleur/controleurAjoutFichier.php';
+require_once 'Controleur/controleurSearch.php';
 
 class Routeur {
 
@@ -45,6 +46,11 @@ class Routeur {
         {
             $this->controleurAjoutFichier = new ControleurAjoutFichier();
             $this->controleurAjoutFichier->import();
+        }
+        else if($this->action=='search')
+        {
+            $this->controleurSearch=new controleurSearch();
+            $this->controleurSearch->Recherche();
         }
         /* ajout route
         else if($this->action=='XX')
