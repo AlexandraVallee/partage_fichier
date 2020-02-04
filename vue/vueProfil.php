@@ -1,4 +1,4 @@
-<?php $this->titre = "Recherche"; ?>
+<?php $this->titre = "Profil de "; ?>
 
 <?php if(isset($erreur)){echo $erreur;} ?>
 <div class="gallery" id="gallery">

@@ -4,6 +4,7 @@ require_once 'Vue/Vue.php';
 require_once 'Controleur/controleurUser.php';
 require_once 'Controleur/controleurAjoutFichier.php';
 require_once 'Controleur/controleurSearch.php';
+require_once 'Controleur/controleurProfil.php';
 
 class Routeur {
 
@@ -51,6 +52,11 @@ class Routeur {
         {
             $this->controleurSearch=new controleurSearch();
             $this->controleurSearch->Recherche();
+        }
+        else if($this->action=='profil')
+        {
+            $this->controleurProfil=new controleurProfil();
+            $this->controleurProfil->vueImage();
         }
         /* ajout route
         else if($this->action=='XX')

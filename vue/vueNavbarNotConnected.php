@@ -10,5 +10,11 @@
 			</li>
 			<li> <button id="connexion_deconnexion" class="btn btn-custom1" onclick="showFenetreConnexion()"><span class="icon icon-user"> Connexion</button> </li>
 		</ul>
+		<form class="form-inline my-2 my-lg-0" method="POST" action="index.php?action=search">
+                <input class="form-control mr-sm-2"  type="search" name="q" placeholder="Rechercher" aria-label="Rechercher">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" name="submitSearch" value="Search" >Rechercher</button>
+        </form>
+
+
 	</div>
 </nav>

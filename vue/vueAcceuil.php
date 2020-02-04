@@ -1,10 +1,5 @@
 <?php $this->titre = "Partage'chou"; ?>
 
-<form class="search" method="POST" action="index.php?action=search">
-				<input class="form-control"  type="search" name="q" placeholder="Search" aria-label="Search">
-				<input class="btn btnSearch" type="submit" name="submitSearch" value="Search" ></input>
-				</form>
-
 <div class="gallery" id="gallery">
 <?php 
 foreach($listeFile as $file):

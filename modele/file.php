@@ -84,6 +84,21 @@ class File extends connexion_bdd
           return $result;  
     }
 
+    public function getFileByUser(){
+
+        $req="WHERE id_user=(SELECT ID FROM user WHERE pseudo=?)";
+        $r = "SELECT ID, nom, lien_local, lien_url, date_ajout  FROM fichier ".$req."  ORDER BY date_ajout DESC";
+
+        
+        $param=[array(1,$this->user,PDO::PARAM_STR)];
+
+        $file= $this->executerRequete($r, $param);
+
+        $result = $file->fetchAll();
+
+        return($result);
+
+    }
 
 
 
