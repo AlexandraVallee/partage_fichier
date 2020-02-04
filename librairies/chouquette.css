@@ -171,6 +171,6 @@ padding-right: 1.1rem;
 .imageRogner
 {
 	overflow: hidden;
-	height:150px !important;
+	height:auto !important;
 	width:150px !important;
 }
