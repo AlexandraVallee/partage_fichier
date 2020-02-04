@@ -14,13 +14,13 @@
 		</div>
 
 			<div class="form-group">
-		  		<input type="radio" id="huey" name="drone" value="huey"
+		  		<input type="radio" id="huey" name="drone" value="public"
 		         checked>
 		  		<label for="public">Public</label>
 			</div>
 
 			<div class="form-group">
-		  		<input type="radio" id="dewey" name="drone" value="dewey">
+		  		<input type="radio" id="dewey" name="drone" value="prive">
 		  		<label for="prive">Privé</label>
 			</div>
 

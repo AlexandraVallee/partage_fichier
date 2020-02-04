@@ -49,11 +49,12 @@ class File extends connexion_bdd
     	else
     	{
     		$req='';
+            $param=null;
     	}
 
     	try
           {
-            $file = "SELECT nom, lien_local, lien_url,date_ajout  FROM fichier ".$req."  ORDER BY date_ajout DESC";
+            $file = "SELECT ID, nom, lien_local, lien_url,date_ajout  FROM fichier ".$req."  ORDER BY date_ajout DESC";
             
             $files=$this->executerRequete($file,$param);
           }
@@ -61,9 +62,9 @@ class File extends connexion_bdd
           {
               echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
           }
-          $result=$files->fetch(PDO::FETCH_ASSOC);
-          $resultFile=[$result['nom'],$result['lien_local'],$result['lien_url'],$result['date_ajout']];
-          return $resultFile;  
+          $result=$files->fetchAll();
+
+          return $result;  
     }
 
 
