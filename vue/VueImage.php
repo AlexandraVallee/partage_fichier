@@ -5,4 +5,5 @@
 	</div>
 	<img class="img-fluid" src=<?php echo ( $image['lien_local']); ?> alt=<?php echo $image['nom']; ?>> </a><br>
 	<span ><?php echo ( $image['date_ajout']); ?></span>
+	<p> Lien pour partager l'image : <?php echo $image['lien_url']; ?></p>
 </div>
