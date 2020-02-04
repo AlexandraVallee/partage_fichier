@@ -36,10 +36,15 @@ class Routeur {
             $this->controleurUser=new ControleurUser;
             $this->controleurUser->Deconnexion();
         }
-        if($this->action=='fichier_ajout')
+        else if($this->action=='fichier_ajout')
         {
             $this->controleurAjoutFichier = new ControleurAjoutFichier();
             $this->controleurAjoutFichier->ajoutFichier();
+        }
+        else if($this->action=='import')
+        {
+            $this->controleurAjoutFichier = new ControleurAjoutFichier();
+            $this->controleurAjoutFichier->import();
         }
         /* ajout route
         else if($this->action=='XX')

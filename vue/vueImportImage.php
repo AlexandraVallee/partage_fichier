@@ -2,7 +2,7 @@
 <div class="container mt-4">
 	<h2 style="text-align: center;" >Ajout du fichier</h2>
 
-	<form action="" method="post">
+	<form action="index.php?action=import" method="post">
 		<div class="form-group">
 			<label nom="nom">Non du fichier</label>
 			<input class="form-control" type="text" name="nom">
