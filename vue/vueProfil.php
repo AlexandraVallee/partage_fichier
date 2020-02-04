@@ -1,4 +1,4 @@
-<?php $this->titre = "Profil de "; ?>
+<?php $this->titre = "Profil de ".$this->login; ?>
 
 <?php if(isset($erreur)){echo $erreur;} ?>
 <div class="gallery" id="gallery">

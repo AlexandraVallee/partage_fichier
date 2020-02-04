@@ -5,6 +5,7 @@ require_once 'Controleur/controleurUser.php';
 require_once 'Controleur/controleurAjoutFichier.php';
 require_once 'Controleur/controleurSearch.php';
 require_once 'Controleur/controleurProfil.php';
+require_once 'Controleur/controleurUniImg.php';
 
 class Routeur {
 
@@ -57,6 +58,11 @@ class Routeur {
         {
             $this->controleurProfil=new controleurProfil();
             $this->controleurProfil->vueImage();
+        }
+        else if($this->action=='affiche_file')
+        {
+            $this->controleurUniImg = new controleurUniImg();
+            $this->controleurUniImg->affiche();
         }
         /* ajout route
         else if($this->action=='XX')
