@@ -13,7 +13,7 @@
         <input type="checkbox" id="resterConnecter" name="resterConnecter"> <br>
         <input type="submit" name='submitConnexion'value="login"/>
         <br>
-        <a href='http://localhost/toutou_in_love/index.php?action=r%c3%a9cup%c3%a9ration_mdp'>mot de passe oublié? </a>
+      
     </form> 
     </div>
     <div>

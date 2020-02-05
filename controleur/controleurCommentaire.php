@@ -21,45 +21,14 @@ class ControleurCommentaire extends ControleurUser
         $this->date_ajout = new DateTime("NOW");
 	}
 	
-	function commenter(){
+	function commenter($commentaire,$lien){
 		
 
-		if(isset($_POST['submit'])){
-				if(isset($_GET['id']))
-				{
-					$this->id_image = $_GET['id'];
-					$header='Location: index.php?action=affiche_file&id='.$this->id_image;
-				}
-				else if(isset($_GET['lien']))
-				{
-					$this->lien_img = $_GET['lien'];
-					$header='Location: index.php?action=affiche_file&lien='.$this->lien_img;
-				}
-				
-			
-			if(strlen(trim($_POST['commentaire'])) === 0){
 
-				$erreur = 'vous devez remplir ce champ';
-				header($header);
-			}
+				$this->contenu = htmlspecialchars(urldecode($commentaire));
 
-
-			elseif(!isset($erreur)){
-
-				$commentaire = htmlspecialchars(urldecode($_POST['commentaire']));
-
-				$this->contenu = $commentaire;
-				$this->commentaire->setCommentaire($this->contenu,$this->date_ajout->format('Y-m-d H:i:s'), $this->lien_img);
-
-				header($header);
-
-				
-			}
-
-		$vue = new Vue("Image", $this->login);
-        $vue->generer(array('erreur' => $erreur,'login'=>$this->login ));
-
-
-		}
+				$this->commentaire->setCommentaire($this->contenu,$this->date_ajout->format('Y-m-d H:i:s'), $lien);
+				$com_img = $this->commentaire->getCommentaires(null,$lien);
+				return json_encode($com_img);
 	}
 }
