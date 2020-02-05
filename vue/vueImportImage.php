@@ -6,7 +6,7 @@
 
 	<form action="index.php?action=import" method="post" enctype="multipart/form-data">
 		<div class="form-group">
-			<label nom="nom">Non du fichier</label>
+			<label nom="nom">Nom du fichier</label>
 			<input class="form-control" type="text" name="nom">
 		</div>
 		<div class="form-group">

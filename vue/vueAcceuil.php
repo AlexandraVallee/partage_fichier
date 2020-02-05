@@ -23,7 +23,7 @@ foreach($listeFile as $file):
                    <?php } ?>
                    </div>
                    <div name="affichageImg" class="">
-                    <a href="index.php?action=affiche_file&id=<?= ( $file['ID']); ?>"> <img class="img-fluid gallerie" src=<?= ( $file['lien_local']); ?> alt=<?= $file['nom']; ?>> </a><br>
+                    <a href="index.php?action=affiche_file&id=<?= ( $file['ID']); ?>"> <img class="img-fluid gallerie" src=<?= ( $file['lien_affichage']); ?> alt=<?= $file['nom']; ?>> </a><br>
              </div>
          </div>
                    

@@ -11,6 +11,7 @@ class ControleurAjoutFichier extends ControleurUser
     private $nom;
     private $lienLocal;
     private $lienUrl;
+    private $lienAffichage;
     private $statut;
     private $createdAt;
 
@@ -49,6 +50,8 @@ class ControleurAjoutFichier extends ControleurUser
 
             if(!isset($erreur)){
 
+
+
                 $this->fichier = new File($this->login);
                 
             
@@ -57,7 +60,14 @@ class ControleurAjoutFichier extends ControleurUser
                 
                 $newName = preg_replace('/([^A-Za-z0-9._]+)/i', '-', $_FILES['fileToUpload']['name']);
 
-                $this->lienLocal ="librairies/uploads/".$newName; 
+                $this->lienLocal ="librairies/uploads/".$newName;
+                 if($extension == '.pdf'){
+                    $this->lienAffichage = 'librairies/uploads/typePDF.png';
+                }elseif ( $extension == '.doc' ||  $extension == '.odt' ||  $extension == '.txt') {
+                    $this->lienAffichage = 'librairies/uploads/typeDOC.png';
+                }else{
+                     $this->lienAffichage = $this->lienLocal;
+                } 
                 if(isset($_POST['drone']))
                 {
                     $this->statut = $_POST['drone'];
@@ -69,7 +79,7 @@ class ControleurAjoutFichier extends ControleurUser
 
                 if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $newName)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
                 {
-                    $this->fichier->ajoutFile($this->nom,$this->lienLocal,$this->statut,$this->lienUrl,$this->createdAt->format('Y-m-d H:i:s'));
+                    $this->fichier->ajoutFile($this->nom,$this->lienLocal,$this->statut,$this->lienUrl,$this->createdAt->format('Y-m-d H:i:s'), $this->lienAffichage);
                     if($this->login===null)
                     {
                         header('Location: index.php');

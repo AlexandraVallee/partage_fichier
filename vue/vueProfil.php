@@ -8,7 +8,7 @@ if(isset($listeFile)){
 foreach($listeFile as $file):
 
     ?>
-<figure class="figure">
+<figure class="figure" style=" height: auto; width: 800px;">
    <div class="mb-3 pics animation all 2">
 
    			<div class="card mt-2 mr-2 ml-4">
@@ -16,7 +16,7 @@ foreach($listeFile as $file):
 		<div class="card-body">
 
                     <h2 class="card-title" style="text-align: center;" ><?php echo $file['nom']; ?></h2>
-                    <a href="index.php?action=affiche_file&lien=<?php echo ( $file['lien_url']); ?>"> <img width="800px" height="auto" class="img-fluid" src=<?php echo ( $file['lien_local']); ?> alt=<?php echo $file['nom']; ?>> </a><br>
+                    <a href="index.php?action=affiche_file&lien=<?php echo ( $file['lien_url']); ?>"> <img width="auto" height="500px" class="img-fluid" src=<?php echo ( $file['lien_affichage']); ?> alt=<?php echo $file['nom']; ?>> </a><br>
                     <div class="card-footer text-muted">
                     <span > Ajouter le : <?php echo ( $file['date_ajout']); ?></span>
                     <p> Lien pour partager l'image : index.php?action=affiche_file&lien=<?php echo $file['lien_url']; ?></p>

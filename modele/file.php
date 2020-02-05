@@ -23,12 +23,12 @@ class File extends connexion_bdd
         }
     }
 
-    public function ajoutFile($nom,$lien,$statut,$lienUrl,$dateAjout)
+    public function ajoutFile($nom,$lien,$statut,$lienUrl,$dateAjout, $lienAffichage)
     {
     	 try
         {
-            $ajoutFile ="INSERT INTO fichier(nom, lien_local, statut, id_user, lien_url, date_ajout ) VALUES(?, ?, ?, (SELECT ID FROM user WHERE pseudo=?),?,?) "; 
-            $param=[array(1,$nom,PDO::PARAM_STR),array(2,$lien,PDO::PARAM_STR),array(3,$statut,PDO::PARAM_STR),array(4,$this->user,PDO::PARAM_STR),array(5,$lienUrl,PDO::PARAM_STR),array(6,$dateAjout,PDO::PARAM_STR)];
+            $ajoutFile ="INSERT INTO fichier(nom, lien_local, statut, id_user, lien_url, date_ajout, lien_affichage ) VALUES(?, ?, ?, (SELECT ID FROM user WHERE pseudo=?),?,?,?) "; 
+            $param=[array(1,$nom,PDO::PARAM_STR),array(2,$lien,PDO::PARAM_STR),array(3,$statut,PDO::PARAM_STR),array(4,$this->user,PDO::PARAM_STR),array(5,$lienUrl,PDO::PARAM_STR),array(6,$dateAjout,PDO::PARAM_STR),array(7,$lienAffichage,PDO::PARAM_STR)];
             $ajoutFile=$this->executerRequete($ajoutFile,$param);
         }
         catch(Exception $e)
@@ -83,7 +83,7 @@ class File extends connexion_bdd
 
     	try
           {
-            $file = "SELECT ID, nom, lien_local, lien_url,date_ajout  FROM fichier ".$req."  ORDER BY date_ajout DESC";
+            $file = "SELECT ID, nom, lien_local, lien_url,date_ajout,lien_affichage  FROM fichier ".$req."  ORDER BY date_ajout DESC";
             
             $files=$this->executerRequete($file,$param);
           }
@@ -99,7 +99,7 @@ class File extends connexion_bdd
     public function getFileByUser(){
 
         $req="WHERE id_user=(SELECT ID FROM user WHERE pseudo=?)";
-        $r = "SELECT ID, nom, lien_local, lien_url, date_ajout  FROM fichier ".$req."  ORDER BY date_ajout DESC";
+        $r = "SELECT ID, nom, lien_local, lien_url, date_ajout, lien_affichage  FROM fichier ".$req."  ORDER BY date_ajout DESC";
 
         
         $param=[array(1,$this->user,PDO::PARAM_STR)];

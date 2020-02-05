@@ -1,0 +1,53 @@
+Cahier des charges Promenons-nous !!
+
+RECIT UTILISATEUR :
+
+ - Les acteurs :
+	- En tant membre, je peux :
+
+		* Consulter les fiches rando existante
+		* Créer de nouvelles fiches rando
+		* second temps Labelliser/catégoriser fiches rando -> dans la fiche rando
+		* Créer une proposition de balade
+		* Annuler une proposition de balade
+		* Répondre aux autres utilisateurs dans le topic
+		* Rédaction avis sur le tracé.// a voir
+		* Validation de la participation d'un autre utilisateur ? 
+		(Fiche tracé en premier et date puis dans un second temps l'horaire puis le contact de l'organisateur)
+		*(droit en fonction créateur du topic/autres utillisateurs qui s'interressent à la balade)  	
+
+
+	- En tant qu'Administrateur, je peux :
+		
+		* Voir des statistiques (nombre d'utilisateur, nombre de proposition de balade ...)
+		* Labelliser/catégoriser le tracé
+		* Validation des tracés en fonction des avis Utilisateurs (dangerosité ? )
+		* Ajout de tracé
+		* Fermer un topic de proposition de balade
+		* Supprimer compte innactif (automatisation) Ou ne respectant pas les régles de bonne pratique
+		
+
+	- En tant qu'Utilisateur, 
+
+		* Créer un compte 
+		* Consulter les tracés
+
+
+
+MCD :
+
+	-Table : membre, administrateur, fiche rando(ajout membre/administrateur), topic(généré par les membres), réponses(généré par les membres)
+
+
+WIREFRAME :
+
+	- Page de connextion/inscription/récupération
+	- Tableau de bord membre/administrateur
+	- Rédaction topic/réponses
+	- Affichage topic/réponses
+
+
+
+
+
+
