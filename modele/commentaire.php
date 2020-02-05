@@ -9,7 +9,19 @@ class Commentaire extends connexion_bdd
 	{
 		$this->user=$login;
 	}
-
+  public function supprimer($id)
+  {
+     try
+        {
+            $suppressionfile="DELETE FROM commentaire WHERE id_image=?";
+            $param=[array(1,$id,PDO::PARAM_INT)];
+            $supprimer=$this->executerRequete($suppressionfile,$param);
+        }
+        catch(Exception $e)
+        {
+            echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
+        }
+  }
 	public function getCommentaires($id_file, $lien)
 	{
     if($id_file!=null)

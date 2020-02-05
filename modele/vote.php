@@ -10,7 +10,19 @@ class Vote extends connexion_bdd
     {
         $this->user=$login;$this->file_id=$id;
     }
-
+    public function supprimer()
+    {
+         try
+        {
+            $suppressionfile="DELETE FROM vote WHERE id_image=?";
+            $param=[array(1,$this->file_id,PDO::PARAM_INT)];
+            $supprimer=$this->executerRequete($suppressionfile,$param);
+        }
+        catch(Exception $e)
+        {
+            echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
+        }
+    }
     public function getNbVote($vote)
     {
     	 try

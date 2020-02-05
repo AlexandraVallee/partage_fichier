@@ -3,6 +3,8 @@
 require_once 'Vue/Vue.php';
 require_once 'Controleur/ControleurUser.php';  
 require_once 'Modele/file.php';  
+require_once 'Modele/commentaire.php';  
+require_once 'Modele/vote.php';  
 
 class ControleurSuppression extends ControleurUser
 {
@@ -19,6 +21,10 @@ class ControleurSuppression extends ControleurUser
     	if(isset($_POST['oui']))
     	{
     		$id=$_GET['id'];
+            $this->vote=new vote($this->login,$id);
+            $this->vote->supprimer();
+            $this->commentaire=new commentaire($this->login);
+            $this->commentaire->supprimer($id);
     		$this->file->supprimer($id);
     		header('Location: index.php?action=profil');
     	}
