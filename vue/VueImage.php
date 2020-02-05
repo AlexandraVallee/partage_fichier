@@ -7,4 +7,24 @@
 	<img class="img-fluid" src=<?php echo ( $image['lien_local']); ?> alt=<?php echo $image['nom']; ?>> </a><br>
 	<span ><?php echo ( $image['date_ajout']); ?></span>
 	<p> Lien pour partager l'image : index.php?action=affiche_file&lien=<?php echo $image['lien_url']; ?></p>
-</div>
+
+	<div class="container">
+		<?php 
+		if(isset($commentaires)){
+			foreach ( $commentaires as $img ):
+		?>
+
+		<article>
+			<div class="figure ">
+		   
+		      <div> 
+		      	<p><?php echo $img['contenu']; ?></p>
+		        <p><?php echo $img['date_ajout']; ?></p>
+		        <p><?php echo $img['pseudo']; ?></p>
+		                    
+		    </div>
+		</article> 
+		         <br>    
+
+	<?php endforeach;}; ?>
+	</div>
