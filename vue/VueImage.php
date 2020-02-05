@@ -9,10 +9,10 @@
 		<div class="card-body">
 			<h2 class="card-title" style="text-align: center;"><?php echo $image['nom']; ?></h2>
 			<img class="card-img-bottom" src=<?php echo ( $image['lien_local']); ?> alt=<?php echo $image['nom']; ?>> </a><br>
-			<footer class="footer mt-2">
+			<div class="card-footer text-muted">
 				<span ><?php echo ( $image['date_ajout']); ?></span>
 				<p> Lien pour partager l'image : index.php?action=affiche_file&lien=<?php echo $image['lien_url']; ?></p>
-			</footer>
+			</div>
 		</div>
 	</div>
 </div>

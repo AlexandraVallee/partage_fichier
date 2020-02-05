@@ -10,8 +10,9 @@ foreach($listeFile as $file):
 
     ?>
 <figure class="figure ">
-   	
-                   <div> <h2 ><?= $file['nom']; ?> </h2>
+   			<div class="card"> 
+   				<div class="card-body">
+                   <div> <h2 style="text-align: center;" ><?= $file['nom']; ?> </h2>
                    	<?php 
                    	if($login===null)
                    		{ ?>
@@ -23,6 +24,8 @@ foreach($listeFile as $file):
                    </div>
                    <div name="affichageImg" class="">
                     <a href="index.php?action=affiche_file&id=<?= ( $file['ID']); ?>"> <img class="img-fluid gallerie" src=<?= ( $file['lien_local']); ?> alt=<?= $file['nom']; ?>> </a><br>
+             </div>
+         </div>
                    
          </div>           
          </figure> <br>    

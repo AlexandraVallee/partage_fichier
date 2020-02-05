@@ -34,7 +34,7 @@ class ControleurAjoutFichier extends ControleurUser
             $fichier = basename($_FILES['fileToUpload']['name']);
             $taille_maxi = 1000000;
             $taille = filesize($_FILES['fileToUpload']['tmp_name']);
-            $extensions = array('.png', '.gif', '.jpg', '.jpeg', '.txt', '.doc', '.odt');
+            $extensions = array('.png', '.gif', '.jpg', '.jpeg', '.txt', '.doc', '.odt', '.pdf');
             $extension = strrchr($_FILES['fileToUpload']['name'], '.'); 
             //Début des vérifications de sécurité...
             if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
@@ -54,7 +54,9 @@ class ControleurAjoutFichier extends ControleurUser
             
                 $this->nom = $_POST['nom'];
                 $this->lienUrl = hash_file('md5',$_FILES['fileToUpload']['tmp_name']);
+                
                 $newName = preg_replace('/([^A-Za-z0-9._]+)/i', '-', $_FILES['fileToUpload']['name']);
+
                 $this->lienLocal ="librairies/uploads/".$newName; 
                 if(isset($_POST['drone']))
                 {
