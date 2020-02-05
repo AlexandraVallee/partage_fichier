@@ -12,7 +12,7 @@ foreach($listeFile as $file):
 <figure class="figure ">
    
                    <div> <h2 ><?php echo $file['nom']; ?> </h2>
-                   	<h3><span class="vote"> nbLike:<?php echo $file['voteUp']; ?> nbDislike:<?php echo $file['voteDown']; ?></span> </h3>
+                   	<h3><span class=" icon-thumb_up_alt"> <?php echo $file['voteUp']; ?> </span><span class="icon-thumb_down_alt"><?php echo $file['voteDown']; ?></span> </h3>
                    </div>
                    <div name="affichageImg" class="">
                     <a href="index.php?action=affiche_file&id=<?php echo ( $file['ID']); ?>"> <img class="img-fluid gallerie" src=<?php echo ( $file['lien_local']); ?> alt=<?php echo $file['nom']; ?>> </a><br>
