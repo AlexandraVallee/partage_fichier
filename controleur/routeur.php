@@ -7,6 +7,7 @@ require_once 'Controleur/controleurSearch.php';
 require_once 'Controleur/controleurProfil.php';
 require_once 'Controleur/controleurUniImg.php';
 require_once 'Controleur/controleurSuppression.php';
+require_once 'Controleur/controleurCommentaire.php';
 
 class Routeur {
 
@@ -69,6 +70,11 @@ class Routeur {
         {
             $this->controleurSuppression = new controleurSuppression();
             $this->controleurSuppression->supprimer();
+        } 
+        else if($this->action=='commenter')
+        {
+            $this->controleurCommentaire = new controleurCommentaire();
+            $this->controleurCommentaire->commenter();
         }
         /* ajout route
         else if($this->action=='XX')

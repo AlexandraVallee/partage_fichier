@@ -27,12 +27,12 @@ class Commentaire extends connexion_bdd
           return $result;  
 	}
 
-	public function setCommentaire($contenu,$date_ajout)
+	public function setCommentaire($contenu,$date_ajout,$id_file)
 	{
 		 try
         {
             $ajoutCommentaire ="INSERT INTO commentaire(contenu, date_ajout,id_image, id_user ) VALUES(?, ?, ?, (SELECT ID FROM user WHERE pseudo=?)) "; 
-            $param=[array(1,$contenu,PDO::PARAM_STR),array(2,$date_ajout,PDO::PARAM_STR),array(3,$this->id_file,PDO::PARAM_INT),array(4,$this->user,PDO::PARAM_STR)];
+            $param=[array(1,$contenu,PDO::PARAM_STR),array(2,$date_ajout,PDO::PARAM_STR),array(3,$id_file,PDO::PARAM_INT),array(4,$this->user,PDO::PARAM_STR)];
             $ajoutCommentaire=$this->executerRequete($ajoutCommentaire,$param);
         }
         catch(Exception $e)

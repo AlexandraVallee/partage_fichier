@@ -39,5 +39,7 @@ class ControleurUniImg extends ControleurUser
         $vue = new Vue("Image", $this->login);
         $vue->generer(array('image' => $image_find[0],'commentaires'=>$com_img, 'erreur' => $erreur, ));
     }
+
+    
 }
 

@@ -15,16 +15,27 @@
 		?>
 
 		<article>
-			<div class="figure ">
 		   
-		      <div> 
-		      	<p><?php echo $img['contenu']; ?></p>
-		        <p><?php echo $img['date_ajout']; ?></p>
-		        <p><?php echo $img['pseudo']; ?></p>
-		                    
-		    </div>
+		      <div class="card mt-4">
+		      	<div class="card-body"> 
+			      	<p><?php echo $img['contenu']; ?></p>
+			      	<div class="blockquote-footer">
+			        	<p><?php echo $img['pseudo']." le ";echo $img['date_ajout'] ; ?></p>
+			        </div>
+		        </div>
+		      </div>
 		</article> 
 		         <br>    
 
-	<?php endforeach;}; ?>
+		<?php endforeach;}; ?>
 	</div>
+
+<div class="container">
+	<form action="index.php?action=commenter&id=<?= $image['ID']?>" method="post">
+		<div class="form-group">
+		<textarea class="form-control" required placeholder="Votre commentaire ici" name="commentaire" ></textarea>
+		</div>
+		<button class="btn btn-secondary pull-right" type="submit" name="submit">Commenter</button>
+	</form>
+</div>
+	
