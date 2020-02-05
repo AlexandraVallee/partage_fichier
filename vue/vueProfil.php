@@ -16,6 +16,14 @@ foreach($listeFile as $file):
 		<div class="card-body">
 
                     <h2 class="card-title" style="text-align: center;" ><?php echo $file['nom']; ?></h2>
+                        <?php 
+                    if($login===null)
+                        { ?>
+                        <h3><span class=" icon-thumb_up_alt"> <?= $file['voteUp']; ?> </span><span class="icon-thumb_down_alt"><?= $file['voteDown']; ?></span> </h3> <?php ;};?>
+                   <?php if($login!=null)
+                    { ?>
+                        <h3><span class=" icon-thumb_up_alt" onclick="vote(<?= ( $file['ID']); ?>,'up')"> <?= $file['voteUp']; ?> </span><span class="icon-thumb_down_alt" onclick="vote(<?= ( $file['ID']); ?>,'down')"><?= $file['voteDown']; ?></span> </h3>
+                   <?php } ?>
                     <a href="index.php?action=affiche_file&lien=<?php echo ( $file['lien_url']); ?>"> <img width="auto" height="500px" class="img-fluid" src=<?php echo ( $file['lien_affichage']); ?> alt=<?php echo $file['nom']; ?>> </a><br>
                     <div class="card-footer text-muted">
                     <span > Ajouter le : <?php echo ( $file['date_ajout']); ?></span>
@@ -31,3 +39,5 @@ foreach($listeFile as $file):
 <?php endforeach; }?>
 
 </div>
+
+<script src="Vue/js/vote.js"defer></script>

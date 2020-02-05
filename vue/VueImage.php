@@ -8,6 +8,14 @@
 		
 		<div class="card-body">
 			<h2 class="card-title" style="text-align: center;"><?php echo $image['nom']; ?></h2>
+				<?php 
+                   	if($login===null)
+                   		{ ?>
+                   		<h3><span class=" icon-thumb_up_alt"> <?= $nbVoteUp; ?> </span><span class="icon-thumb_down_alt"><?= $nbVoteDown; ?></span> </h3> <?php ;};?>
+                   <?php if($login!=null)
+                   	{ ?>
+                   		<h3><span class=" icon-thumb_up_alt" onclick="vote(<?= ( $image['ID']); ?>,'up')"> <?= $nbVoteUp; ?> </span><span class="icon-thumb_down_alt" onclick="vote(<?= ( $image['ID']); ?>,'down')"><?= $nbVoteDown; ?></span> </h3>
+                   <?php } ?>
 			<img class="img-fluid" height="80px" width="auto" src=<?php echo ( $image['lien_affichage']); ?> alt=<?php echo $image['nom']; ?>><br>
 			<div class="card-footer text-muted">
 				<span ><?php echo ( $image['date_ajout']); ?></span>
@@ -54,4 +62,5 @@
 </div>
 
 <script src="Vue/js/ajoutCommentaire.js"defer></script>
+<script src="Vue/js/vote.js"defer></script>
 	

@@ -22,22 +22,13 @@ class Commentaire extends connexion_bdd
             echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
         }
   }
-	public function getCommentaires($id_file, $lien)
+	public function getCommentaires($id_file)
 	{
-    if($id_file!=null)
-    {
-      $req="WHERE id_image=?";
-      $param=[array(1,$id_file,PDO::PARAM_INT)];
-    }
-    if($lien!=null)
-    {
-      $req="WHERE id_image=(SELECT ID FROM fichier WHERE lien_url=?)";
-       $param=[array(1,$lien,PDO::PARAM_STR)];
-    }
+   
 		try
           {
-            $commentaires = "SELECT contenu,date_ajout, pseudo FROM commentaire INNER JOIN user AS user ON user.ID=id_user ".$req." ORDER BY date_ajout DESC";
-            
+            $commentaires = "SELECT contenu,date_ajout, pseudo FROM commentaire INNER JOIN user AS user ON user.ID=id_user WHERE id_image=? ORDER BY date_ajout DESC";
+             $param=[array(1,$id_file,PDO::PARAM_INT)];
             $listCommentaires=$this->executerRequete($commentaires,$param);
           }
           catch(Exception $e)
