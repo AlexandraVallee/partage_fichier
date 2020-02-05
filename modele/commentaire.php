@@ -5,26 +5,26 @@ class Commentaire extends connexion_bdd
 	private $user;
 	private $id_file;
 
-	public function __construct($login, $id_file)
+	public function __construct($login)
 	{
-		$this->user=$login;$this->id_file=$id_file;
+		$this->user=$login;
 	}
 
-	public function getCommentaires()
+	public function getCommentaires($id_file)
 	{
 		try
           {
-            $commentaires = "SELECT contenu,date_ajout FROM commentaire WHERE id_image=? ORDER BY date_ajout DESC";
+            $commentaires = "SELECT contenu,date_ajout, pseudo FROM commentaire INNER JOIN user AS user ON user.ID=id_user WHERE id_image=? ORDER BY date_ajout DESC";
             $param=[array(1,$id_file,PDO::PARAM_INT)];
-            $listCommentaires=$this->executerRequete($commentaire,$param);
+            $listCommentaires=$this->executerRequete($commentaires,$param);
           }
           catch(Exception $e)
           {
               echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
           }
-          $result=$listCommentaires->fetch(PDO::FETCH_ASSOC);
-          $resultCommentaire=[$result['contenu'],$result['date_ajout']];
-          return $resultCommentaire;  
+          $result=$listCommentaires->fetchAll();
+          
+          return $result;  
 	}
 
 	public function setCommentaire($contenu,$date_ajout)

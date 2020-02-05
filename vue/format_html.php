@@ -31,13 +31,14 @@
         </main>      
     </div>
 </div>
-<footer>
-  © Copyright      
-</footer>
+
 
 <?php if(isset($fenetreConnexion)){echo $fenetreConnexion;}?>
 
 </body>
+<footer>
+  © Copyright      
+</footer>
 </html>
 
 <script src="Vue/js/fenetreConnexion.js"defer></script>
