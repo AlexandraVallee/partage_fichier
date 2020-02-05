@@ -33,10 +33,10 @@ class ControleurAjoutFichier extends ControleurUser
         if(isset($_POST['submit'])){
             $dossier = 'librairies/uploads/';
             $fichier = basename($_FILES['fileToUpload']['name']);
-            $taille_maxi = 1000000;
+            $taille_maxi = 8000000;
             $taille = filesize($_FILES['fileToUpload']['tmp_name']);
             $extensions = array('.png', '.gif', '.jpg', '.jpeg', '.txt', '.doc', '.odt', '.pdf');
-            $extension = strrchr($_FILES['fileToUpload']['name'], '.'); 
+            $extension = strtolower(strrchr($_FILES['fileToUpload']['name'], '.')); 
             //Début des vérifications de sécurité...
             if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
             {
