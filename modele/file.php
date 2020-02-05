@@ -9,7 +9,19 @@ class File extends connexion_bdd
     {
         $this->user=$login;
     }
-
+    public function supprimer($id)
+    {
+        try
+        {
+            $suppressionfile="DELETE FROM fichier WHERE ID=? AND id_USER=(SELECT ID FROM user WHERE pseudo=?)";
+            $param=[array(1,$id,PDO::PARAM_INT),array(2,$this->user,PDO::PARAM_STR)];
+            $supprimer=$this->executerRequete($suppressionfile,$param);
+        }
+        catch(Exception $e)
+        {
+            echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
+        }
+    }
 
     public function ajoutFile($nom,$lien,$statut,$lienUrl,$dateAjout)
     {

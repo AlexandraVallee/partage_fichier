@@ -26,7 +26,7 @@ class ControleurUniImg extends ControleurUser
     		$erreur = "";
             
     	}
-    	elseif (isset($_GET['lien'])){
+    	else if (isset($_GET['lien'])){
     		$image_find=$this->file->getFile(null, null,$_GET['lien'], null);
             $com_img = $this->commentaire->getCommentaires($_GET['id']);
     		$erreur = "";
