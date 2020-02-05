@@ -1,14 +1,26 @@
 <?php $this->titre = $image['nom']; ?>	
 <div class="container">
+	
 	<div class="row justify-content-md-center">
 	<?php if(isset($erreur)){echo $erreur;}?>
-	<h2 class=" col col-lg-2  mb-4 mt-4"><?php echo $image['nom']; ?></h2>
+
+	<div class="card mt-4">
+		
+		<div class="card-body">
+			<h2 class="card-title" style="text-align: center;"><?php echo $image['nom']; ?></h2>
+			<img class="card-img-bottom" src=<?php echo ( $image['lien_local']); ?> alt=<?php echo $image['nom']; ?>> </a><br>
+			<footer class="footer mt-2">
+				<span ><?php echo ( $image['date_ajout']); ?></span>
+				<p> Lien pour partager l'image : index.php?action=affiche_file&lien=<?php echo $image['lien_url']; ?></p>
+			</footer>
+		</div>
 	</div>
-	<img class="img-fluid" src=<?php echo ( $image['lien_local']); ?> alt=<?php echo $image['nom']; ?>> </a><br>
-	<span ><?php echo ( $image['date_ajout']); ?></span>
-	<p> Lien pour partager l'image : index.php?action=affiche_file&lien=<?php echo $image['lien_url']; ?></p>
+</div>
 
 	<div class="container">
+
+			<h3 class="mt-4">Les commentaires</h3>
+
 		<?php 
 		if(isset($commentaires)){
 			foreach ( $commentaires as $img ):
@@ -26,16 +38,16 @@
 		      </div>
 		</article> 
 		         <br>    
-
+		
 		<?php endforeach;}; ?>
 	</div>
 
 <div class="container">
-	<form action="index.php?action=commenter&id=<?= $image['ID']?>" method="post">
+	<form action="index.php?action=commenter&lien=<?= $image['lien_url']?>" method="post">
 		<div class="form-group">
 		<textarea class="form-control" required placeholder="Votre commentaire ici" name="commentaire" ></textarea>
 		</div>
-		<button class="btn btn-secondary pull-right" type="submit" name="submit">Commenter</button>
+		<button class="btn btn-secondary mb-4 " type="submit" name="submit">Commenter</button>
 	</form>
 </div>
 	

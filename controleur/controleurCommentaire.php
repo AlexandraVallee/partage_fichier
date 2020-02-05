@@ -26,13 +26,21 @@ class ControleurCommentaire extends ControleurUser
 
 		if(isset($_POST['submit'])){
 
-				$this->id_image = $_GET['id'];
+				if(isset($_GET['id'])){
+					$this->id_image = $_GET['id'];
+					$header='Location: index.php?action=affiche_file&id='.$this->id_image;
+				}
+				elseif(isset($_GET['lien'])){
+					$this->url_img = $_GET['lien'];
+					$header='Location: index.php?action=affiche_file&lien='.$this->url_img;
+				}
+				
 
 			
 			if(strlen(trim($_POST['commentaire'])) === 0){
 
 				$erreur = 'vous devez remplir ce champ';
-				header('Location: index.php?action=affiche_file&id='.$this->id_image);
+				header($header);
 			}
 
 
@@ -43,7 +51,7 @@ class ControleurCommentaire extends ControleurUser
 				$this->contenu = $commentaire;
 				$this->commentaire->setCommentaire($this->contenu,$this->date_ajout->format('Y-m-d H:i:s'), $this->id_image);
 
-				header('Location: index.php?action=affiche_file&id='.$this->id_image);
+				header($header);
 
 				
 			}
