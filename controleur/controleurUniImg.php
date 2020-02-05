@@ -22,13 +22,13 @@ class ControleurUniImg extends ControleurUser
 
     	if(isset($_GET['id'])){
     		$image_find=$this->file->getFile($_GET['id'], null, null, null);
-            $com_img = $this->commentaire->getCommentaires($_GET['id']);
+            $com_img = $this->commentaire->getCommentaires($_GET['id'],null);
     		$erreur = "";
             
     	}
     	else if (isset($_GET['lien'])){
     		$image_find=$this->file->getFile(null, null,$_GET['lien'], null);
-            $com_img = $this->commentaire->getCommentaires($_GET['id']);
+            $com_img = $this->commentaire->getCommentaires(null,$_GET['lien']);
     		$erreur = "";
     	}
     	else{
