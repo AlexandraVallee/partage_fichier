@@ -9,6 +9,7 @@ class File extends connexion_bdd
     {
         $this->user=$login;
     }
+    
     public function supprimer($id)
     {
         try
