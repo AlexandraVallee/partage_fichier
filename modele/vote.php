@@ -4,7 +4,7 @@ class Vote extends connexion_bdd
 {
 
 	private $user;
-	private $file_id
+	private $file_id;
 
 	public function __construct($login,$id)
     {
@@ -15,16 +15,16 @@ class Vote extends connexion_bdd
     {
     	 try
         {
-        $nbVote ="SELECT COUNT() FROM likefile WHERE id_image=? AND vote=?";
-          $param=[array(1,$this->file_id,PDO::PARAM_INT),array(1,$vote,PDO::PARAM_INT) ];
-          $nbLike=$this->executerRequete($nbLike,$param);
+        $nbVote ="SELECT COUNT(ID) FROM vote WHERE id_image=? AND vote=?";
+          $param=[array(1,$this->file_id,PDO::PARAM_INT),array(2,$vote,PDO::PARAM_INT) ];
+          $nbVote=$this->executerRequete($nbVote,$param);
 
         }
         catch(Exception $e)
         {
             echo " Erreur ! ".$e->getMessage(); die;
         }
-        $result=$nbLike->fetchColumn();
+        $result=$nbVote->fetchColumn();
        
         return $result;  
     }

@@ -3,7 +3,7 @@
 require_once 'Vue/Vue.php';
 require_once 'Controleur/ControleurUser.php';   
 require_once 'Modele/File.php';
-require_once 'Modele/Like.php';
+require_once 'Modele/Vote.php';
 
 class ControleurAcceuil extends ControleurUser
 {
@@ -21,12 +21,13 @@ class ControleurAcceuil extends ControleurUser
         $liste_file=$this->file->getFile();
         foreach ($liste_file as $key => $value) 
         {
-           $like=new like($this->login,$value['ID']);
-           $like->getNbLike();
-           $liste_file[$key]['like']=$like;
+           $vote=new vote($this->login,$value['ID']);
+           $nbVoteUp=$vote->getNbVote(1);
+           $nbVoteDown=$vote->getNbVote(-1);
+           $liste_file[$key]['voteUp']=$nbVoteUp;
+           $liste_file[$key]['voteDown']=$nbVoteDown;
         }
-
-        
+              
         
            
         
