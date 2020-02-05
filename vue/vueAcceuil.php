@@ -10,12 +10,19 @@ foreach($listeFile as $file):
 
     ?>
 <figure class="figure ">
-   
-                   <div> <h2 ><?php echo $file['nom']; ?> </h2>
-                   	<h3><span class=" icon-thumb_up_alt"> <?php echo $file['voteUp']; ?> </span><span class="icon-thumb_down_alt"><?php echo $file['voteDown']; ?></span> </h3>
+   	
+                   <div> <h2 ><?= $file['nom']; ?> </h2>
+                   	<?php 
+                   	if($login===null)
+                   		{ ?>
+                   		<h3><span class=" icon-thumb_up_alt"> <?= $file['voteUp']; ?> </span><span class="icon-thumb_down_alt"><?= $file['voteDown']; ?></span> </h3> <?php ;};?>
+                   <?php if($login!=null)
+                   	{ ?>
+                   		<h3><span class=" icon-thumb_up_alt" onclick="vote(<?= ( $file['ID']); ?>,'up')"> <?= $file['voteUp']; ?> </span><span class="icon-thumb_down_alt" onclick="vote(<?= ( $file['ID']); ?>,'down')"><?= $file['voteDown']; ?></span> </h3>
+                   <?php } ?>
                    </div>
                    <div name="affichageImg" class="">
-                    <a href="index.php?action=affiche_file&id=<?php echo ( $file['ID']); ?>"> <img class="img-fluid gallerie" src=<?php echo ( $file['lien_local']); ?> alt=<?php echo $file['nom']; ?>> </a><br>
+                    <a href="index.php?action=affiche_file&id=<?= ( $file['ID']); ?>"> <img class="img-fluid gallerie" src=<?= ( $file['lien_local']); ?> alt=<?= $file['nom']; ?>> </a><br>
                    
          </div>           
          </figure> <br>    
@@ -26,14 +33,46 @@ foreach($listeFile as $file):
 
 <script> 
 
+function vote(id,vote)
+{
+	let target=$(event.target);
+	let targetUp=$(event.target).parent().children( ".icon-thumb_up_alt" );
+	let targetDown=$(event.target).parent().children( ".icon-thumb_down_alt" );
+	$(document).ready(function(){
+
+	$(function()
+	{
+		$.ajax({
+			url:'APIVote.php',
+			type:'POST',
+			data: {vote:vote, id:id},
+			dataType:'text' 
+		})
+
+		.done(function(data){ 
+			
+			let data2=JSON.parse(data);
+			$(targetUp).text(data2['voteup']);
+			$(targetDown).text(data2['votedown']);
+			if(vote=='up')
+			{
+				targetDown.css('color','black');
+				targetUp.css('color','green');
+			}
+			if(vote=='down')
+			{
+				targetUp.css('color','black');
+				targetDown.css('color','red');
+			}
+		});
+	});
+	});
+}
+
 function affichage(mode)
 {
 	$(document).ready(function(){
-
-		console.log(mode)
-	
 		$('#affichage').removeClass();
-
 		$('div[name="affichageImg"]').each(function(){ $(this).removeClass();});
 		console.log($('div[name="affichageImg "] img'))
 		$('div[name="affichageImg"] img').each(function(){ $(this).removeClass();})	;

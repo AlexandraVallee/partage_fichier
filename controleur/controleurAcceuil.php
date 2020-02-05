@@ -32,6 +32,6 @@ class ControleurAcceuil extends ControleurUser
            
         
         $vue = new Vue("Acceuil",$this->login);
-        $vue->generer(array('listeFile' => $liste_file));
+        $vue->generer(array('listeFile' => $liste_file,'login'=>$this->login));
     } 
 }

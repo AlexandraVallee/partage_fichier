@@ -33,7 +33,7 @@ class ControleurUser
         }
         return $this->login;
     }
-
+  
 	function Deconnexion()
 	{
         unset($_SESSION['login']);  // supprime la variable de session login)

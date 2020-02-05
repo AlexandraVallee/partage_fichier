@@ -29,7 +29,7 @@ class Vote extends connexion_bdd
         return $result;  
     }
 
-    public function getVote()
+    public function getAllVote()
     {
     	try
         {
@@ -48,12 +48,31 @@ class Vote extends connexion_bdd
        
         return $result;  
     }
+        public function getVote()
+    {
+        try
+        {
+        $isUserLike ="SELECT COUNT(vote) FROM vote WHERE id_user=(SELECT ID FROM user WHERE pseudo=?) AND id_image=?";
+          $param=[array(1,$this->user,PDO::PARAM_STR),array(2,$this->file_id,PDO::PARAM_INT) ];
+          $isUserLike=$this->executerRequete($isUserLike,$param);
+
+        }
+        catch(Exception $e)
+        {
+            echo " Erreur ! ".$e->getMessage(); die;
+        }
+        $result=$isUserLike->fetchColumn();
+          
+          return $result;  
+       
+       
+    }
     public function setVote($vote)
     {
     	 try
         {
             $ajoutVote ="INSERT INTO vote(id_image, id_user,vote ) VALUES(?, (SELECT ID FROM user WHERE pseudo=?),?) "; 
-            $param=[array(1,$file_id,PDO::PARAM_INT),array(2,$this->user,PDO::PARAM_STR),array(3,$vote,PDO::PARAM_INT)];
+            $param=[array(1,$this->file_id,PDO::PARAM_INT),array(2,$this->user,PDO::PARAM_STR),array(3,$vote,PDO::PARAM_INT)];
             $ajoutVote=$this->executerRequete($ajoutVote,$param);
         }
         catch(Exception $e)
@@ -65,8 +84,8 @@ class Vote extends connexion_bdd
     {
          try
         {
-            $ajoutVote ="UPDATE vote SET vote=? WHERE id_image=? AND id_user=(SELECT ID FROM user WHERE pseudo=?)) "; 
-            $param=[array(1,$vote,PDO::PARAM_INT), array(2,$file_id,PDO::PARAM_INT),array(3,$this->user,PDO::PARAM_STR),];
+            $ajoutVote ="UPDATE vote SET vote=? WHERE id_image=? AND id_user=(SELECT ID FROM user WHERE pseudo=?) "; 
+            $param=[array(1,$vote,PDO::PARAM_INT), array(2,$this->file_id,PDO::PARAM_INT),array(3,$this->user,PDO::PARAM_STR),];
             $ajoutVote=$this->executerRequete($ajoutVote,$param);
         }
         catch(Exception $e)
