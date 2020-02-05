@@ -6,6 +6,7 @@ require_once 'Controleur/controleurAjoutFichier.php';
 require_once 'Controleur/controleurSearch.php';
 require_once 'Controleur/controleurProfil.php';
 require_once 'Controleur/controleurUniImg.php';
+require_once 'Controleur/controleurSuppression.php';
 
 class Routeur {
 
@@ -63,6 +64,11 @@ class Routeur {
         {
             $this->controleurUniImg = new controleurUniImg();
             $this->controleurUniImg->affiche();
+        }
+         else if($this->action=='suppression')
+        {
+            $this->controleurSuppression = new controleurSuppression();
+            $this->controleurSuppression->supprimer();
         }
         /* ajout route
         else if($this->action=='XX')
