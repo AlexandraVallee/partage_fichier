@@ -3,6 +3,7 @@
 require_once 'Vue/Vue.php';
 require_once 'Controleur/ControleurUser.php';  
 require_once 'Modele/file.php';  
+require_once 'Modele/tag.php';  
 
 class ControleurAjoutFichier extends ControleurUser
 {
@@ -30,7 +31,8 @@ class ControleurAjoutFichier extends ControleurUser
         public function import()
     {
 
-        if(isset($_POST['submit'])){
+        if(isset($_POST['submit']))
+        {
             $dossier = 'librairies/uploads/';
             $fichier = basename($_FILES['fileToUpload']['name']);
             $taille_maxi = 8000000;
@@ -46,15 +48,35 @@ class ControleurAjoutFichier extends ControleurUser
             {
                  $erreur = 'Le fichier est trop gros...';
             }
+            $tags=$_POST['tag'];
+            foreach ($tags as  $tag) 
+            {
+               if($tag!=null)
+               {
+                    if(strlen($tag)>2&&strlen($tag)<31)
+                    {
+                        if (preg_match('#^\##',($tag)))
+                        {
+                            $nomtag=$tag;
+                        }
+                        else
+                        {
+                            $nomtag="#".$tag;
+                        }
+                            $listeTag[]=urlencode($nomtag);
+                    }
+                    
+                    else
+                    {
+                        $erreur ="le tag doit faire entre 3 et 30 caractères";
+                    }
+                }
+            }
 
 
-            if(!isset($erreur)){
-
-
-
+            if(!isset($erreur))
+            {
                 $this->fichier = new File($this->login);
-                
-            
                 $this->nom = $_POST['nom'];
                 $this->lienUrl = hash_file('md5',$_FILES['fileToUpload']['tmp_name']);
                 
@@ -76,10 +98,28 @@ class ControleurAjoutFichier extends ControleurUser
                 {
                     $this->statut = 'public';
                 }
-
+           
                 if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $newName)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
                 {
-                    $this->fichier->ajoutFile($this->nom,$this->lienLocal,$this->statut,$this->lienUrl,$this->createdAt->format('Y-m-d H:i:s'), $this->lienAffichage);
+                    $id_file=$this->fichier->ajoutFile($this->nom,$this->lienLocal,$this->statut,$this->lienUrl,$this->createdAt->format('Y-m-d H:i:s'), $this->lienAffichage);
+                    //ajout Tag au fichier
+                    if($listeTag!=[])
+                    {
+                        foreach($listeTag as $tag)
+                        {
+                            $tag= new Tag($id_file,$tag);
+                            $tagExiste=$tag->getTag();
+                            if($tagExiste==0)
+                            {
+                                $tag->ajoutTag();
+                            }
+                            $tag->ajoutTagImage();
+
+                        }
+              
+                    }
+                    
+
                     if($this->login===null)
                     {
                         header('Location: index.php');

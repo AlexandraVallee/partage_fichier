@@ -4,7 +4,7 @@
 
 	<?php if(isset($erreur)){echo $erreur;}?>
 
-	<form action="index.php?action=import" method="post" enctype="multipart/form-data">
+	<form id="ajoutFileForm" action="index.php?action=import" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 			<label nom="nom">Nom du fichier</label>
 			<input class="form-control" type="text" name="nom">
@@ -13,6 +13,11 @@
 			<label for="fichier">Ajouter un fichier</label>
 
 			<input class="form-control" type="file" name="fileToUpload" id="fileToUpload" accept="image/png, image/jpeg, image/jpg, .doc, .txt, .pdf, .odt">
+		</div>
+		<div id="tag" class="form-group">
+			<label for="tag">Ajouter un tag</label>
+
+			<input class="form-control" type="text" placeholder="ex : #licorne" name="tag[]" onchange="change()">
 		</div>
 		<?php if($login!=null)
 		{ ?>
@@ -31,3 +36,5 @@
 
 		</form>
 	</div>
+
+<script src="Vue/js/formTag.js"defer></script>

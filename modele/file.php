@@ -30,12 +30,14 @@ class File extends connexion_bdd
         {
             $ajoutFile ="INSERT INTO fichier(nom, lien_local, statut, id_user, lien_url, date_ajout, lien_affichage ) VALUES(?, ?, ?, (SELECT ID FROM user WHERE pseudo=?),?,?,?) "; 
             $param=[array(1,$nom,PDO::PARAM_STR),array(2,$lien,PDO::PARAM_STR),array(3,$statut,PDO::PARAM_STR),array(4,$this->user,PDO::PARAM_STR),array(5,$lienUrl,PDO::PARAM_STR),array(6,$dateAjout,PDO::PARAM_STR),array(7,$lienAffichage,PDO::PARAM_STR)];
-            $ajoutFile=$this->executerRequete($ajoutFile,$param);
+            $ajoutFile=$this->executerRequeteInsertRecupId($ajoutFile,$param);
         }
         catch(Exception $e)
         {
             echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
         }
+
+        return($ajoutFile);
     }
 
     public function getFile($id =null, $recherche =null, $lienUrl =null, $user =null)

@@ -25,6 +25,24 @@ abstract class connexion_bdd {
         }
         return $resultat;
     }
+        protected function executerRequeteInsertRecupId($sql, $params = null) 
+    {
+        if ($params == null) 
+        {
+            $resultat = self::getBdd()->query($sql);   // exécution directe
+        }
+        else 
+        {
+            $resultat = self::getBdd()->prepare($sql); // requête préparée
+            for( $i=0; $i<count($params);$i++)
+            {  
+                $resultat->bindValue($params[$i][0],$params[$i][1],$params[$i][2]);
+            }
+            $resultat->execute();
+            $resultId=self::getBdd()->lastInsertId();
+        }
+        return $resultId;
+    }
 
     private static function getBdd() 
     {
