@@ -11,7 +11,7 @@ foreach($listeFile as $file):
     ?>
 <figure class="figure ">
    			<div class="card"> 
-   				<div class="card-body">
+   				<div name ="card" class="card-body">
                    <div> <h2 style="text-align: center;" ><?= $file['nom']; ?> 
                     <?php foreach($file['tag'] as $tag): ?>
                           <h3> <?= urldecode($tag['nom'])?></h3>

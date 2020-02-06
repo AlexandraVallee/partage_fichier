@@ -47,7 +47,7 @@ footer {
 
 h2
 {
-	font-size:2.5em;
+	font-size:1.8em;
 	font-style:bold;
 }
 
@@ -55,7 +55,10 @@ p
 {
 	font-size:1em;
 }
-
+div .card-body.tuile2 
+{
+  height:350px;
+}
 #navbarSupportedContent{
 	max-height: 100;
 }
