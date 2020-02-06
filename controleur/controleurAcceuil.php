@@ -26,8 +26,11 @@ class ControleurAcceuil extends ControleurUser
            $nbVoteDown=$vote->getNbVote(-1);
            $liste_file[$key]['voteUp']=$nbVoteUp;
            $liste_file[$key]['voteDown']=$nbVoteDown;
+           $tag= new tag($value['ID'],$this->login);
+           $tags=$tag->getTagImage();
+           $liste_file[$key]['tag']=$tags;
         }
-              
+     
         
            
         

@@ -86,7 +86,7 @@ class File extends connexion_bdd
 
     	try
           {
-            $file = "SELECT ID, nom, lien_local, lien_url,date_ajout,lien_affichage  FROM fichier ".$req."  ORDER BY date_ajout DESC";
+            $file = "SELECT ID, nom, lien_local, lien_url,date_ajout,lien_affichage FROM fichier ".$req." ORDER BY date_ajout DESC";
             
             $files=$this->executerRequete($file,$param);
           }

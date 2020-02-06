@@ -69,5 +69,20 @@ class Tag extends connexion_bdd
             echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
         }
     }
-
+    public function getTagImage()
+    {
+    try
+          {
+            $tags = "SELECT nom FROM tag  INNER JOIN tag_fichier AS tag_fichier ON tag_fichier.id_tag=tag.ID WHERE ?=tag_fichier.id_fichier ";
+            $param=[array(1,$this->id_image,PDO::PARAM_INT)];
+            $tags=$this->executerRequete($tags,$param);
+          }
+          catch(Exception $e)
+          {
+              echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
+          }
+          $result=$tags->fetchAll();
+          
+          return $result;  
+        }
 }
