@@ -1,7 +1,15 @@
 <?php $this->titre = "Recherche"; ?>
 
-<?php if(isset($erreur)){echo $erreur;} ?>
-<div class="gallery" id="gallery">
+
+<?php 
+if(isset($erreur)){
+?>
+<div class="alert alert-danger mt-2" style="text-align: center" role="alert">
+<?php echo $erreur;
+} 
+?>
+</div>
+
 
 <?php
 if(isset($listeFile)){

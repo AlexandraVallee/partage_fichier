@@ -74,7 +74,7 @@ class ControleurSearch extends ControleurUser
                     $vue = new Vue("Search",$this->login);
                     if(count($listeFile)==0)
                     {
-                        $erreur='no result found';
+                        $erreur='Aucun résultat pour la recherche';
                          $vue->generer(array('listeFile' => $listeFile,'erreur' => $erreur));
                     }
                     else
