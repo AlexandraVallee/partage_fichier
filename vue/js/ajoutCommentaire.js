@@ -14,7 +14,7 @@ $(document).ready(function(){
                 dataType:'text' 
                 })
             .done(function(data){ 
-            
+          
             let data2=JSON.parse(data);
             var commentaires="";
             $.each(data2, function(index,value){

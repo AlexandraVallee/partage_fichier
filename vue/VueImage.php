@@ -55,7 +55,7 @@
 	<form id="formCommentaire" action="" >
 		<div class="form-group">
 		<textarea class="form-control" required placeholder="Votre commentaire ici" name="commentaire" ></textarea>
-		<input type="hidden" name="lien" value="<?= $image['lien_url']?>">
+		<input type="hidden" name="lien" value="<?= $image['ID']?>">
 		</div>
 		<button class="btn btn-secondary mb-4 " type="submit" name="submit">Commenter</button>
 	</form>

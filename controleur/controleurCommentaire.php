@@ -21,14 +21,14 @@ class ControleurCommentaire extends ControleurUser
         $this->date_ajout = new DateTime("NOW");
 	}
 	
-	function commenter($commentaire,$lien){
+	function commenter($commentaire,$id){
 		
 
 
 				$this->contenu = htmlspecialchars(urldecode($commentaire));
 
-				$this->commentaire->setCommentaire($this->contenu,$this->date_ajout->format('Y-m-d H:i:s'), $lien);
-				$com_img = $this->commentaire->getCommentaires(null,$lien);
+				$this->commentaire->setCommentaire($this->contenu,$this->date_ajout->format('Y-m-d H:i:s'), $id);
+				$com_img = $this->commentaire->getCommentaires($id);
 				return json_encode($com_img);
 	}
 }
