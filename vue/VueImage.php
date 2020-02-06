@@ -7,7 +7,11 @@
 	<div class="card mt-4">
 		
 		<div class="card-body">
-			<h2 class="card-title" style="text-align: center;"><?php echo $image['nom']; ?></h2>
+			<h2 class="card-title" style="text-align: center;"><?php echo $image['nom']; ?>
+				<?php foreach($tags as $tag): ?>
+                          <h3> <?= urldecode($tag['nom'])?></h3>
+                        <?php endforeach?>
+			</h2>
 				<?php 
                    	if($login===null)
                    		{ ?>

@@ -40,12 +40,12 @@ class ControleurUniImg extends ControleurUser
     	}
         $nbVoteUp=$vote->getNbVote(1);
         $nbVoteDown=$vote->getNbVote(-1);
-        $tag= new tag($value['ID'],$this->login);
+        $tag= new tag($image_find[0]['ID'],$this->login);
         $tags=$tag->getTagImage();
-        $listeFile[$key]['tag']=$tags;
+        
         
         $vue = new Vue("Image", $this->login);
-        $vue->generer(array('image' => $image_find[0],'commentaires'=>$com_img, 'erreur' => $erreur,'login'=>$this->login,'nbVoteUp' => $nbVoteUp,'nbVoteDown' => $nbVoteDown));
+        $vue->generer(array('image' => $image_find[0],'commentaires'=>$com_img, 'erreur' => $erreur,'login'=>$this->login,'nbVoteUp' => $nbVoteUp,'nbVoteDown' => $nbVoteDown,'tags'=>$tags));
     }
 
     
