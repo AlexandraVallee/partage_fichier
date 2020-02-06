@@ -34,11 +34,42 @@ class ControleurSearch extends ControleurUser
                         } 
                         else 
                         {
-                            $motsCles[$i] = addslashes(strip_tags($motsCles[$i]));
+                            $motsCles[$i] = addslashes(strip_tags(urlencode($motsCles[$i])));
                         }
                     }
                     $nombreMots=count($motsCles);
-                    $listeFile=$this->file->getFile(null,[$nombreMots,$motsCles],null,null);
+                   
+                    if($_POST['choix']==='Par tag')
+                    {
+                        $listeFile=$this->file->getFileByTag([$nombreMots,$motsCles]);
+                       foreach ($listeFile as $key => $value) 
+                         {
+                               $vote=new vote($this->login,$value['ID']);
+                               $nbVoteUp=$vote->getNbVote(1);
+                               $nbVoteDown=$vote->getNbVote(-1);
+                               $listeFile[$key]['voteUp']=$nbVoteUp;
+                               $listeFile[$key]['voteDown']=$nbVoteDown;
+                               $tag= new tag($value['ID'],$this->login);
+                               $tags=$tag->getTagImage();
+                               $listeFile[$key]['tag']=$tags;
+                            }
+                    }
+                    else
+                    {
+                         $listeFile=$this->file->getFile(null,[$nombreMots,$motsCles],null,null);
+                         foreach ($listeFile as $key => $value) 
+                     {
+                           $vote=new vote($this->login,$value['ID']);
+                           $nbVoteUp=$vote->getNbVote(1);
+                           $nbVoteDown=$vote->getNbVote(-1);
+                           $listeFile[$key]['voteUp']=$nbVoteUp;
+                           $listeFile[$key]['voteDown']=$nbVoteDown;
+                           $tag= new tag($value['ID'],$this->login);
+                           $tags=$tag->getTagImage();
+                           $listeFile[$key]['tag']=$tags;
+                        }
+                    }
+                   
                    
                     $vue = new Vue("Search",$this->login);
                     if(count($listeFile)==0)

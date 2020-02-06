@@ -114,7 +114,41 @@ class File extends connexion_bdd
         return($result);
 
     }
+     public function getFileByTag($recherche)
+    {
+        
+            $nombreMots=$recherche[0];
+            $motsCles=$recherche[1];
+            $where=[];
+            for ($i=0;$i<$nombreMots;$i++) //pour chaque mot clé 
+            {
+                $where[] = 'tag.nom LIKE ? '; //on ajoute des conditions qui serviront au WHERE
+            }
+            $finRequete= implode(' OR ', $where); //on relie nos conditions par un opérateur logique
+                $req=$finRequete;
+                $param=[];
+                $k=1;
+                for ($i=0; $i<$nombreMots; $i++) 
+                {
+                    array_push($param,array($k, '%'.$motsCles[$i].'%', PDO::PARAM_STR));
+                    $k++;
+                   
+                }
+            
+        try
+          {
+            $file = "SELECT fichier.ID, fichier.nom, lien_local, lien_url,date_ajout,lien_affichage,GROUP_CONCAT(tag.nom) FROM fichier  INNER JOIN tag_fichier AS tf ON tf.id_fichier=fichier.ID INNER JOIN tag AS tag ON tag.ID=tf.id_tag AND ".$req."  GROUP BY fichier.ID ORDER BY date_ajout DESC";
+            
+            $files=$this->executerRequete($file,$param);
+          }
+          catch(Exception $e)
+          {
+              echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
+          }
+          $result=$files->fetchAll();
 
+          return $result;  
+    }
 
 
 

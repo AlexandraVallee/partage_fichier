@@ -27,6 +27,9 @@ class ControleurProfil extends ControleurUser
            $nbVoteDown=$vote->getNbVote(-1);
            $listeFile[$key]['voteUp']=$nbVoteUp;
            $listeFile[$key]['voteDown']=$nbVoteDown;
+           $tag= new tag($value['ID'],$this->login);
+            $tags=$tag->getTagImage();
+            $listeFile[$key]['tag']=$tags;
         }
 		$vue = new Vue('profil', $this->login);
 		$vue->generer(array('listeFile' => $listeFile,'login'=>$this->login));
