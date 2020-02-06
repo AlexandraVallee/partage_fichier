@@ -79,7 +79,7 @@ class ControleurSearch extends ControleurUser
                     }
                     else
                     {
-                        $vue->generer(array('listeFile' => $listeFile));
+                        $vue->generer(array('listeFile' => $listeFile,'login'=>$this->login));
                     }
                     
                     
