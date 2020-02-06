@@ -1,4 +1,5 @@
 <?php $this->titre = "Ajout image"; ?>
+
 <div class="container mt-4">
 	<h2 style="text-align: center;" >Ajout du fichier</h2>
 
@@ -12,12 +13,15 @@
 		<div class="form-group">
 			<label for="fichier">Ajouter un fichier</label>
 
-			<input class="form-control" type="file" name="fileToUpload" id="fileToUpload" accept="image/png, image/jpeg, image/jpg, .doc, .txt, .pdf, .odt">
+			<input class="form-control" type="file" name="fileToUpload" id="fileToUpload" accept="image/png, image/jpeg, image/jpg, .doc, .txt, .pdf, .odt" onchange="charge()">
+			<div id="affiche"></div>
 		</div>
 		<div id="tag" class="form-group">
 			<label for="tag">Ajouter un tag</label>
 
 			<input class="form-control" type="text" placeholder="ex : #licorne" name="tag[]" onchange="change()">
+
+			
 		</div>
 		<?php if($login!=null)
 		{ ?>
@@ -38,3 +42,22 @@
 	</div>
 
 <script src="Vue/js/formTag.js"defer></script>
+	
+</script>
+
+	<script type="text/javascript">
+	function charge(){
+		 $('#affiche').children().remove();
+		var file=event.target.files[0];
+		$(document).ready(function(){
+			var reader = new FileReader();
+            reader.onload = function (e)
+		{
+            var html = "<img style='width: 200px; height: auto'src=\"" + e.target.result + "\" data-file='"+file.name+"' id='preview' class='preview mt-4'><br>" + "<br/>";
+            $('#affiche').append(html);
+		}
+		reader.readAsDataURL(file);
+
+		})};
+
+	</script>
