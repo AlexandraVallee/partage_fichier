@@ -18,9 +18,11 @@ class ControleurSuppression extends ControleurUser
 
     public function supprimer()
     {
-    	if(isset($_POST['oui']))
+    	//si choix oui
+        if(isset($_POST['oui']))
     	{
-    		$id=$_GET['id'];
+    		//suppression vote, commentaires puis fichier
+            $id=$_GET['id'];
             $this->vote=new vote($this->login,$id);
             $this->vote->supprimer();
             $this->commentaire=new commentaire($this->login);
@@ -28,6 +30,7 @@ class ControleurSuppression extends ControleurUser
     		$this->file->supprimer($id);
     		header('Location: index.php?action=profil');
     	}
+        //si choix non rediriger vers profil
     	else if(isset($_POST['non']))
     	{
     		header('Location: index.php?action=profil');
@@ -39,5 +42,4 @@ class ControleurSuppression extends ControleurUser
         	$vue->generer(array('' => ''));
         }
     }
-
 }

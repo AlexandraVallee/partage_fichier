@@ -58,6 +58,4 @@ class ControleurUser
 		header('Location: '.$_SESSION['redirect'].'');
 	 			 exit();
 	}
-
-
 }

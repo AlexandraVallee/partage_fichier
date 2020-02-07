@@ -14,21 +14,19 @@ class ControleurCommentaire extends ControleurUser
 	private $id_image;
 	private $id;
 
-
 	public function __construct(){
 		parent::__construct();
 		$this->commentaire = new Commentaire($this->login);
         $this->date_ajout = new DateTime("NOW");
 	}
-	
-	function commenter($commentaire,$id){
-		
 
-
-				$this->contenu = htmlspecialchars(urldecode($commentaire));
-
-				$this->commentaire->setCommentaire($this->contenu,$this->date_ajout->format('Y-m-d H:i:s'), $id);
-				$com_img = $this->commentaire->getCommentaires($id);
-				return json_encode($com_img);
+	function commenter($commentaire,$id)
+	{
+		//ajout commentaire
+		$this->contenu = htmlspecialchars(urldecode($commentaire));
+		$this->commentaire->setCommentaire($this->contenu,$this->date_ajout->format('Y-m-d H:i:s'), $id);
+		//recup liste commentaire du fichier
+		$com_img = $this->commentaire->getCommentaires($id);
+		return json_encode($com_img);
 	}
 }

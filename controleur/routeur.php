@@ -15,11 +15,16 @@ class Routeur {
     private $controleurUser;
     private $controleurAjoutFichier;
     private $action;
+    private $controleurSearch;
+    private $controleurProfil;
+    private $controleurSuppression;
+    private $controleurUniImg;
 
     public function __construct()
     {
-         $this->action=null; 
-         $this->controleurAcceuil=null;$this->action=null;$this->controleurUser=null;
+        $this->action=null; 
+        $this->controleurAcceuil=null;$this->action=null;$this->controleurUser=null;
+        $this->controleurSuppression=null;$this->controleurSearch=null;$this->controleurProfil=null;$this->controleurUniImg=null;$this->controleurAjoutFichier=null;
     }
 
     // Traite une requête entrante
@@ -41,47 +46,36 @@ class Routeur {
             $this->controleurUser=new ControleurUser;
             $this->controleurUser->Deconnexion();
         }
-        else if($this->action=='fichier_ajout')
+        else if($this->action=='fichier_ajout')//formulaire ajout
         {
             $this->controleurAjoutFichier = new ControleurAjoutFichier();
             $this->controleurAjoutFichier->ajoutFichier();
         }
-        else if($this->action=='import')
+        else if($this->action=='import')//formulaire validé ajout de fichier
         {
             $this->controleurAjoutFichier = new ControleurAjoutFichier();
             $this->controleurAjoutFichier->import();
         }
-        else if($this->action=='search')
+        else if($this->action=='search')//recherche
         {
             $this->controleurSearch=new controleurSearch();
             $this->controleurSearch->Recherche();
         }
-        else if($this->action=='profil')
+        else if($this->action=='profil')//liste img user
         {
             $this->controleurProfil=new controleurProfil();
             $this->controleurProfil->vueImage();
         }
-        else if($this->action=='affiche_file')
+        else if($this->action=='affiche_file')//image seule
         {
             $this->controleurUniImg = new controleurUniImg();
             $this->controleurUniImg->affiche();
         }
-         else if($this->action=='suppression')
+         else if($this->action=='suppression')//suppression image
         {
             $this->controleurSuppression = new controleurSuppression();
             $this->controleurSuppression->supprimer();
         } 
-        else if($this->action=='commenter')
-        {
-            $this->controleurCommentaire = new controleurCommentaire();
-            $this->controleurCommentaire->commenter();
-        }
-        /* ajout route
-        else if($this->action=='XX')
-        {
-            $this->controleurXX=new ControleurXX;
-            $this->controleurXX->xx();
-        }*/
         
         //si pas d'action ou action non valide afficher la page d'acceuil
         else

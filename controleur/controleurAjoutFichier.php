@@ -23,14 +23,16 @@ class ControleurAjoutFichier extends ControleurUser
         $this->createdAt = new DateTime("NOW");     
     } 
 
+    //vue page ajout fichier
     public function ajoutFichier()
     {
-            $vue = new Vue("ImportImage", $this->login);
-            $vue->generer(array('login' => $this->login ));
+        $vue = new Vue("ImportImage", $this->login);
+        $vue->generer(array('login' => $this->login ));
     }
-        public function import()
+    
+    //si formualaire submit
+    public function import()
     {
-
         if(isset($_POST['submit']))
         {
             $dossier = 'librairies/uploads/';
@@ -48,6 +50,7 @@ class ControleurAjoutFichier extends ControleurUser
             {
                  $erreur = 'Le fichier est trop gros...';
             }
+            //récup tag
             $tags=$_POST['tag'];
             foreach ($tags as  $tag) 
             {
@@ -55,7 +58,8 @@ class ControleurAjoutFichier extends ControleurUser
                {
                     if(strlen($tag)>2&&strlen($tag)<31)
                     {
-                        if (preg_match('#^\##',($tag)))
+                        //si tag ne commence pas par # en ajouter un
+                        if (preg_match('#^\##',($tag))) 
                         {
                             $nomtag=$tag;
                         }
@@ -63,9 +67,8 @@ class ControleurAjoutFichier extends ControleurUser
                         {
                             $nomtag="#".$tag;
                         }
-                            $listeTag[]=urlencode($nomtag);
+                        $listeTag[]=urlencode($nomtag);
                     }
-                    
                     else
                     {
                         $erreur ="le tag doit faire entre 3 et 30 caractères";
@@ -73,23 +76,29 @@ class ControleurAjoutFichier extends ControleurUser
                 }
             }
 
-
-            if(!isset($erreur))
+            if(!isset($erreur))//s'il n'y a pas d'erreur
             {
                 $this->fichier = new File($this->login);
                 $this->nom = $_POST['nom'];
+                //génération lien url
                 $this->lienUrl = hash_file('md5',$_FILES['fileToUpload']['tmp_name']);
-                
+                //asainir nom fichier
                 $newName = preg_replace('/([^A-Za-z0-9._]+)/i', '-', $_FILES['fileToUpload']['name']);
-
                 $this->lienLocal ="librairies/uploads/".$newName;
-                 if($extension == '.pdf'){
+                //définir lien affichage selon extension
+                if($extension == '.pdf')
+                {
                     $this->lienAffichage = 'librairies/uploads/typePDF.png';
-                }elseif ( $extension == '.doc' ||  $extension == '.odt' ||  $extension == '.txt') {
+                }
+                elseif ( $extension == '.doc' ||  $extension == '.odt' ||  $extension == '.txt') 
+                {
                     $this->lienAffichage = 'librairies/uploads/typeDOC.png';
-                }else{
+                }
+                else
+                {
                      $this->lienAffichage = $this->lienLocal;
                 } 
+                //si choix public/privé
                 if(isset($_POST['drone']))
                 {
                     $this->statut = $_POST['drone'];
@@ -98,7 +107,7 @@ class ControleurAjoutFichier extends ControleurUser
                 {
                     $this->statut = 'public';
                 }
-           
+                //transférer fichier vers fichier destination
                 if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $dossier . $newName)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
                 {
                     $id_file=$this->fichier->ajoutFile($this->nom,$this->lienLocal,$this->statut,$this->lienUrl,$this->createdAt->format('Y-m-d H:i:s'), $this->lienAffichage);
@@ -114,12 +123,9 @@ class ControleurAjoutFichier extends ControleurUser
                                 $tag->ajoutTag();
                             }
                             $tag->ajoutTagImage();
-
                         }
-              
                     }
-                    
-
+                    //redirection suivant si user connecté ou pas
                     if($this->login===null)
                     {
                         header('Location: index.php');
@@ -135,7 +141,7 @@ class ControleurAjoutFichier extends ControleurUser
                 }
             }
         }
-        
+        //sinon générer vue 
         $vue = new Vue("ImportImage", $this->login);
         $vue->generer(array('erreur' => $erreur,'login'=>$this->login ));
     }
