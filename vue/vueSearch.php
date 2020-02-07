@@ -22,9 +22,9 @@ foreach($listeFile as $file):
    		    <div class="card-body">
             
                 <div><h2 ><?php echo $file['nom']; ?>
-                     <?php foreach($file['tag'] as $tag): ?>
-                          <h3> <?= urldecode($tag['nom'])?></h3>
-                        <?php endforeach?>
+                      <h3><?php foreach($file['tag'] as $tag): ?>
+                          <?= urldecode($tag['nom'])?>
+                        <?php endforeach?></h3>
                 </h2></div>
                     <?php 
                     if($login===null)

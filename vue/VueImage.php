@@ -8,9 +8,9 @@
 		
 		<div class="card-body">
 			<h2 class="card-title" style="text-align: center;"><?php echo $image['nom']; ?>
-				<?php foreach($tags as $tag): ?>
-                          <h3> <?= urldecode($tag['nom'])?></h3>
-                        <?php endforeach?>
+				 <h3><?php foreach($tags as $tag): ?>
+                          <?= urldecode($tag['nom'])?>
+                        <?php endforeach?></h3>
 			</h2>
 				<?php 
                    	if($login===null)
