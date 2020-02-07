@@ -8,6 +8,7 @@ abstract class connexion_bdd {
     const mdp ='';
     private static $bdd;
 
+    //execution de requete
     protected function executerRequete($sql, $params = null) 
     {
         if ($params == null) 
@@ -25,7 +26,9 @@ abstract class connexion_bdd {
         }
         return $resultat;
     }
-        protected function executerRequeteInsertRecupId($sql, $params = null) 
+
+    //execution de requete d'insertion avec récupération de l'id de la ligne insérée
+    protected function executerRequeteInsertRecupId($sql, $params = null) 
     {
         if ($params == null) 
         {
@@ -44,6 +47,7 @@ abstract class connexion_bdd {
         return $resultId;
     }
 
+    //connexion bdd
     private static function getBdd() 
     {
         if (self::$bdd === null) 

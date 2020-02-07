@@ -1,4 +1,3 @@
-
 function showFenetreConnexion()
 {
 	document.getElementById('fenetreConnexion').className='fenetreShow';
@@ -7,14 +6,13 @@ function showFenetreConnexion()
 
 function hideFenetreConnexion()
 {
-	
 	document.getElementById('fenetreConnexion').className='fenetreClose';//virer la div
 	document.getElementById('fond').className='';//virer le fond
     //réinitialiser la valeur des input
     $('input[type!=submit]').each(function(){
-    {
-        $('input[type!=submit]').val("");
-    }
+        {
+            $('input[type!=submit]').val("");
+        }
     });
     //enlever les messages d'erreur
     $('#erreur').text("");
@@ -28,13 +26,13 @@ document.getElementById('fond').addEventListener('click',hideFenetreConnexion)
 $(document).ready(function(){
     jQuery.validator.addMethod("regex",function(value, element, regexp) 
     {
-       if (regexp.constructor != RegExp)
+        if (regexp.constructor != RegExp)
           regexp = new RegExp(regexp);
-       else if (regexp.global)
+        else if (regexp.global)
           regexp.lastIndex = 0;
-          return this.optional(element) || regexp.test(value);
-    },"erreur expression reguliere"
-    );
+        return this.optional(element) || regexp.test(value);
+    },"erreur expression reguliere" );
+
 ////////////formulaire inscription///////////////////////////
     $("#formulaireInscription").validate(
     {
@@ -81,7 +79,7 @@ $(document).ready(function(){
                 { 
                     console.log(data);
                     let rep=JSON.parse(data);
-                    
+                    //vider les champs et afficher message succès
                     if(rep.success)
                     {
                         $('#erreur2').html(rep.message);
@@ -90,6 +88,7 @@ $(document).ready(function(){
                         $('input[name="mot_de_passe2"]').val("");
                         $('input[name="email"]').val("");
                     }
+                    //vider les mots de passe et afficher message erreur
                     else
                     {  
                         $('#erreur2').text(rep.erreur);
@@ -99,7 +98,7 @@ $(document).ready(function(){
 
                 });
         }
-      	});
+    });
 
 //////////////formulaire connexion//////////////////////////////////
     $("#formulaireConnexion").validate(
@@ -122,19 +121,19 @@ $(document).ready(function(){
                 dataType:'text' 
                 })
             .done(function(data)
-                { 
-                    let rep=JSON.parse(data);
-                    if(rep.success)
-                    {
-                        document.location.href=(rep.location);
-                    }
-                    else
-                    {  
-                        $('input[name="pseudo_connexion"]').val("");
-                        $('input[name="mot_de_passe_connexion"]').val("");
-                        $('#erreur').text(rep.erreur);
-                    }
-                });
+            { 
+                let rep=JSON.parse(data);
+                if(rep.success)
+                {
+                    document.location.href=(rep.location);
+                }
+                else
+                {  
+                    $('input[name="pseudo_connexion"]').val("");
+                    $('input[name="mot_de_passe_connexion"]').val("");
+                    $('#erreur').text(rep.erreur);
+                }
+            });
         }
     });
 });

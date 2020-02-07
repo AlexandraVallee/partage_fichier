@@ -1,5 +1,6 @@
 <?php
 require_once 'Modele/ControleUser.php';
+//démarrez la session commme on ne passe pas par l'index
 session_start();
 $action = $_POST['action'];
 $target=[];
@@ -11,7 +12,7 @@ $resterConnecter=false;
 $reponse=[];
 $connexionAutorisee=false;
 
-
+//selon action connexion ou inscription
 switch ($action) {
 	case "connexion":
 		//récupérer les datas 
@@ -96,6 +97,7 @@ switch ($action) {
 
 				if(password_verify($mdp2, $mdp)) //vérif mdp identiques
 				{
+					//faire l'inscription
 					$controleUser=new ControleUser($login,$mdp);
 					$InscriptionAutorisee=$controleUser->VerifInscription($email);
 					if($InscriptionAutorisee==0)

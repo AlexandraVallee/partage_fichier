@@ -1,6 +1,6 @@
-
 function vote(id,vote)
 {
+	//recup les 2 span vote
 	let target=$(event.target);
 	let targetUp=$(event.target).parent().children( ".icon-thumb_up_alt" );
 	let targetDown=$(event.target).parent().children( ".icon-thumb_down_alt" );
@@ -8,6 +8,7 @@ function vote(id,vote)
 
 	$(function()
 	{
+		//envoie vote et id en ajax
 		$.ajax({
 			url:'APIVote.php',
 			type:'POST',
@@ -18,6 +19,7 @@ function vote(id,vote)
 		.done(function(data){ 
 			
 			let data2=JSON.parse(data);
+			//recup donnée et affichage vote actualisés
 			$(targetUp).text(data2['voteup']);
 			$(targetDown).text(data2['votedown']);
 			if(vote=='up')
