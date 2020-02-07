@@ -90,4 +90,22 @@ class Tag extends connexion_bdd
   $result=$tags->fetchAll();
   return $result;  
   }
+
+//supprimer tag fichier    
+    public function supprimer()
+    {
+         try
+        {
+            $suppressionfile="DELETE FROM tag_fichier WHERE id_fichier=?";
+            $param=[array(1,$this->id_image,PDO::PARAM_INT)];
+            $supprimer=$this->executerRequete($suppressionfile,$param);
+        }
+        catch(Exception $e)
+        {
+            echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
+        }
+    }
+
+
+
 }

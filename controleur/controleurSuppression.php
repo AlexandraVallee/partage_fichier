@@ -21,12 +21,14 @@ class ControleurSuppression extends ControleurUser
     	//si choix oui
         if(isset($_POST['oui']))
     	{
-    		//suppression vote, commentaires puis fichier
+    		//suppression vote, commentaires,tag_image puis fichier
             $id=$_GET['id'];
             $this->vote=new vote($this->login,$id);
             $this->vote->supprimer();
             $this->commentaire=new commentaire($this->login);
             $this->commentaire->supprimer($id);
+            $this->tag=new Tag($id,null);
+            $this->tag->supprimer();
     		$this->file->supprimer($id);
     		header('Location: index.php?action=profil');
     	}
