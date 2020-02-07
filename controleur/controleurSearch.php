@@ -38,7 +38,7 @@ class ControleurSearch extends ControleurUser
             }
           }
           $nombreMots=count($motsCles);
-          
+         
           //recup choix tag ou titre         
           if($_POST['choix']==='Par tag')
           {

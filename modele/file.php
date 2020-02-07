@@ -130,7 +130,7 @@ class File extends connexion_bdd
             } 
         try
         {
-            $file = "SELECT fichier.ID, fichier.nom, lien_local, lien_url,date_ajout,lien_affichage,GROUP_CONCAT(tag.nom) FROM fichier  INNER JOIN tag_fichier AS tf ON tf.id_fichier=fichier.ID INNER JOIN tag AS tag ON tag.ID=tf.id_tag AND ".$req."  GROUP BY fichier.ID ORDER BY date_ajout DESC";
+            $file = "SELECT fichier.ID, fichier.nom, lien_local, lien_url,date_ajout,lien_affichage,GROUP_CONCAT(tag.nom) FROM fichier  INNER JOIN tag_fichier AS tf ON tf.id_fichier=fichier.ID INNER JOIN tag AS tag ON tag.ID=tf.id_tag AND (".$req.")  GROUP BY fichier.ID ORDER BY date_ajout DESC";
             
             $files=$this->executerRequete($file,$param);
         }
