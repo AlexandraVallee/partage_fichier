@@ -2,7 +2,6 @@
 require_once'modele/connexion_bdd.php';
 class Vote extends connexion_bdd
 {
-
 	private $user;
 	private $file_id;
 
@@ -10,6 +9,8 @@ class Vote extends connexion_bdd
     {
         $this->user=$login;$this->file_id=$id;
     }
+
+//supprimer un vote    
     public function supprimer()
     {
          try
@@ -23,9 +24,11 @@ class Vote extends connexion_bdd
             echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
         }
     }
+
+//obtenir le nombre de vote d'un fichier (positif ou négatif)    
     public function getNbVote($vote)
     {
-    	 try
+    	try
         {
         $nbVote ="SELECT COUNT(ID) FROM vote WHERE id_image=? AND vote=?";
           $param=[array(1,$this->file_id,PDO::PARAM_INT),array(2,$vote,PDO::PARAM_INT) ];
@@ -37,10 +40,10 @@ class Vote extends connexion_bdd
             echo " Erreur ! ".$e->getMessage(); die;
         }
         $result=$nbVote->fetchColumn();
-       
         return $result;  
     }
 
+//obtenir les votes d'un user
     public function getAllVote()
     {
     	try
@@ -55,18 +58,19 @@ class Vote extends connexion_bdd
             echo " Erreur ! ".$e->getMessage(); die;
         }
         $result=$isUserLike->fetch(PDO::FETCH_ASSOC);
-          $resultLikeUser=$result['vote'];
-          return $resultLikeUser;  
-       
+        $resultLikeUser=$result['vote'];
+        return $resultLikeUser;  
         return $result;  
     }
-        public function getVote()
+
+//savoir si le user à déjà un vote sur un fichier
+    public function getVote()
     {
         try
         {
-        $isUserLike ="SELECT COUNT(vote) FROM vote WHERE id_user=(SELECT ID FROM user WHERE pseudo=?) AND id_image=?";
-          $param=[array(1,$this->user,PDO::PARAM_STR),array(2,$this->file_id,PDO::PARAM_INT) ];
-          $isUserLike=$this->executerRequete($isUserLike,$param);
+            $isUserLike ="SELECT COUNT(vote) FROM vote WHERE id_user=(SELECT ID FROM user WHERE pseudo=?) AND id_image=?";
+            $param=[array(1,$this->user,PDO::PARAM_STR),array(2,$this->file_id,PDO::PARAM_INT) ];
+            $isUserLike=$this->executerRequete($isUserLike,$param);
 
         }
         catch(Exception $e)
@@ -74,14 +78,13 @@ class Vote extends connexion_bdd
             echo " Erreur ! ".$e->getMessage(); die;
         }
         $result=$isUserLike->fetchColumn();
-          
-          return $result;  
-       
-       
+        return $result;  
     }
+
+//ajouter un vote    
     public function setVote($vote)
     {
-    	 try
+    	try
         {
             $ajoutVote ="INSERT INTO vote(id_image, id_user,vote ) VALUES(?, (SELECT ID FROM user WHERE pseudo=?),?) "; 
             $param=[array(1,$this->file_id,PDO::PARAM_INT),array(2,$this->user,PDO::PARAM_STR),array(3,$vote,PDO::PARAM_INT)];
@@ -92,9 +95,11 @@ class Vote extends connexion_bdd
             echo " Erreur ! ".$e->getMessage(); print_r($datas); die;
         }
     }
+
+//updater un vote d'un user    
     public function updateVote($vote)
     {
-         try
+        try
         {
             $ajoutVote ="UPDATE vote SET vote=? WHERE id_image=? AND id_user=(SELECT ID FROM user WHERE pseudo=?) "; 
             $param=[array(1,$vote,PDO::PARAM_INT), array(2,$this->file_id,PDO::PARAM_INT),array(3,$this->user,PDO::PARAM_STR),];
