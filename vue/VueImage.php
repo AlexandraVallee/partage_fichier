@@ -54,7 +54,10 @@
 		
 		<?php endforeach;}; ?>
 	</div>
-
+<?php 
+if($login!=null)
+{ ?>
+                   		
 <div class="container">
 	<form id="formCommentaire" action="" >
 		<div class="form-group">
@@ -64,7 +67,7 @@
 		<button class="btn btn-secondary mb-4 " type="submit" name="submit">Commenter</button>
 	</form>
 </div>
-
+<?php }?>
 <script src="Vue/js/ajoutCommentaire.js"defer></script>
 <script src="Vue/js/vote.js"defer></script>
 	
