@@ -22,7 +22,7 @@
                    <?php } ?>
 			<img class="img-fluid" height="80px" width="auto" src=<?php echo ( $image['lien_affichage']); ?> alt=<?php echo $image['nom']; ?>><br>
 			<div class="card-footer text-muted">
-				<span > ajoutée le : <?php echo ( $image['date_ajout']); ?></span>
+				<span > Ajouté le : <?php $d = new DateTime($image['date_ajout']); echo ( $d->format('d-m-Y \a H:i:s ')); ?></span>
 				<p> Lien pour partager l'image : index.php?action=affiche_file&lien=<?php echo $image['lien_url']; ?></p>
 				<a href="<?php echo $image['lien_local']; ?>" download="<?php echo $image['nom']; ?>"> Télécharger le fichier </a>
 			</div>
@@ -45,7 +45,7 @@
 		      	<div class="card-body"> 
 			      	<p><?php echo $img['contenu']; ?></p>
 			      	<div class="blockquote-footer">
-			        	<p><?php echo $img['pseudo']." le ";echo $img['date_ajout'] ; ?></p>
+			        	<p><?php echo $img['pseudo']." le "; $d = new DateTime($img['date_ajout']); echo ( $d->format('d-m-Y \a H:i:s ')); ?></p>
 			        </div>
 		        </div>
 		      </div>

@@ -26,7 +26,7 @@ foreach($listeFile as $file):
                    <?php } ?>
                     <a href="index.php?action=affiche_file&lien=<?php echo ( $file['lien_url']); ?>"> <img width="auto" height="500px" class="img-fluid" src=<?php echo ( $file['lien_affichage']); ?> alt=<?php echo $file['nom']; ?>> </a><br>
                     <div class="card-footer text-muted">
-                    <span > Ajouter le : <?php echo ( $file['date_ajout']); ?></span>
+                    <span > Ajouter le : <?php $d = new DateTime($file['date_ajout']); echo ( $d->format('d-m-Y \a H:i:s ')); ?></span>
                     <p> Lien pour partager l'image : index.php?action=affiche_file&lien=<?php echo $file['lien_url']; ?></p>
                     <button class="btn btn-outline-secondary mt-2"><a style="text-decoration: none; color:#515151FF " href="index.php?action=suppression&id=<?php echo ( $file['ID']); ?>">Supprimer le fichier</a></button>
                     </div>
