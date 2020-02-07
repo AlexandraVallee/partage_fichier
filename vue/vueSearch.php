@@ -39,7 +39,7 @@ foreach($listeFile as $file):
                    <?php } ?>
                 <a href="index.php?action=affiche_file&id=<?php echo ( $file['ID']); ?>"> <img class="img-fluid mt-4" style="width: auto; height: 500px;"src=<?php echo ( $file['lien_affichage']); ?> alt=<?php echo $file['nom']; ?>> </a><br>
                 <div class="card-footer text-muted">
-                    <span ><?php echo ( $file['date_ajout']); ?></span>
+                    <span ><?php $d = new DateTime($file['date_ajout']); echo ( ' rajouté le '.$d->format('d-m-Y \a H:i:s ')); ?></span>
                 </div>
             </div>
         </div>
